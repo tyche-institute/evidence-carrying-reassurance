@@ -1,0 +1,255 @@
+{
+  "accepted": false,
+  "action_class": "enrich",
+  "appraised_at": "2026-05-27T11:16:19Z",
+  "case_id": "E03_brokered_untrusted_root",
+  "checks": {
+    "binding": [
+      {
+        "check": "B01_NO_CARRIER_RECORD",
+        "detail": "carrier record accepted",
+        "result": "pass"
+      },
+      {
+        "check": "B02_NO_EVIDENCE",
+        "detail": "evidence object present",
+        "result": "pass"
+      },
+      {
+        "check": "B03_MESSAGE_ID_MISMATCH",
+        "detail": "tyche-real-run-20260527T111419Z",
+        "result": "pass"
+      },
+      {
+        "check": "B04_REQUEST_DIGEST_MISMATCH",
+        "detail": "822d59bc55cfc3d85555b792ccd6036efa55854b5be71408f078c2e0e4cdac6b",
+        "result": "pass"
+      },
+      {
+        "check": "B05_RESPONSE_DIGEST_MISMATCH",
+        "detail": "2c7713a2b73cc7821c0e9a9b227565161586e7bad09b19f82c21ff53d65192e8",
+        "result": "pass"
+      },
+      {
+        "check": "B06_BROKER_BINDING_ALTERED",
+        "detail": "broker normalisation preserves binding fields",
+        "result": "pass"
+      }
+    ],
+    "carrier": [
+      {
+        "check": "K01_CARRIER_RECORD_MISSING",
+        "detail": "carrier record present",
+        "result": "pass"
+      },
+      {
+        "check": "K02_CARRIER_REJECTED",
+        "detail": "carrier status accepted",
+        "result": "pass"
+      },
+      {
+        "check": "K03_CARRIER_CONFIG_MISMATCH",
+        "detail": "DEV DEV/COM/4321/TestClient -> DEV/COM/1234/TestService/mock1",
+        "result": "pass"
+      },
+      {
+        "check": "K04_MESSAGE_LOG_MISSING",
+        "detail": "provider rows [9, 10], consumer rows [4, 5]",
+        "result": "pass"
+      },
+      {
+        "check": "K05_CARRIER_VALIDATION_UNAVAILABLE",
+        "detail": "validation and timestamping chains available",
+        "result": "pass"
+      }
+    ],
+    "evidence": [
+      {
+        "check": "V01_EVIDENCE_MISSING",
+        "detail": "evidence object present",
+        "result": "pass"
+      },
+      {
+        "check": "V02_PROFILE_UNKNOWN",
+        "detail": "ecr-receipt/0.2",
+        "result": "pass"
+      },
+      {
+        "check": "V03_REQUIRED_FIELD_MISSING",
+        "detail": "all mandatory fields present",
+        "result": "pass"
+      },
+      {
+        "check": "V04_SIGNATURE_INVALID",
+        "detail": "issuer signature verifies; key_id matches issuer.key_id",
+        "result": "pass"
+      },
+      {
+        "check": "V05_ENDORSEMENT_INVALID",
+        "detail": "1 endorsement(s) verify",
+        "result": "pass"
+      },
+      {
+        "check": "V06_BROKER_SIGNATURE_INVALID",
+        "detail": "broker signature verifies",
+        "result": "pass"
+      },
+      {
+        "check": "V07_BROKER_DIGEST_MISMATCH",
+        "detail": "sha256:166ff1e58a1dec52a902c0af3d62270328a7e90d0792d6c8e8dbbddb5fb27af2",
+        "result": "pass"
+      },
+      {
+        "check": "V08_TIMESTAMP_TOKEN_INVALID",
+        "detail": "tsa:municipal-tsa at 2026-05-27T11:14:22Z over receipt payload digest",
+        "result": "pass"
+      },
+      {
+        "check": "V09_STATUS_LIST_INVALID",
+        "detail": "status:municipal-delegation-registry issued 2026-05-27T11:00:00Z",
+        "result": "pass"
+      },
+      {
+        "check": "V10_CO_APPROVAL_INVALID",
+        "detail": "no co-approval (policy decides)",
+        "result": "skip"
+      }
+    ],
+    "policy": [
+      {
+        "check": "R00_UPSTREAM_PREDICATE_FAILED",
+        "detail": "carrier, binding and evidence predicates hold",
+        "result": "pass"
+      },
+      {
+        "check": "R01_VERIFIER_PROFILE_MISSING",
+        "detail": "ecr-verifier/0.2",
+        "result": "pass"
+      },
+      {
+        "check": "R02_VERIFIER_PROFILE_MISMATCH",
+        "detail": "ecr-verifier/0.2",
+        "result": "pass"
+      },
+      {
+        "check": "R03_ISSUER_ROOT_ABSENT",
+        "detail": "root:vendor-demo-ca",
+        "result": "pass"
+      },
+      {
+        "check": "R04_ROOT_NOT_ACCEPTED",
+        "detail": "root:vendor-demo-ca",
+        "result": "fail"
+      },
+      {
+        "check": "R05_ROOT_NOT_ACCEPTED_FOR_ACTION",
+        "detail": "",
+        "result": "skip"
+      },
+      {
+        "check": "R06_ROOT_CONFLICT",
+        "detail": "no accepted root asserts status",
+        "result": "pass"
+      },
+      {
+        "check": "R07_BROKER_NOT_ACCEPTED",
+        "detail": "broker:municipal-evidence-broker / map-2026-05",
+        "result": "pass"
+      },
+      {
+        "check": "R08_BROKER_ALIAS_NOT_INJECTIVE",
+        "detail": "4 mapping rows, aliases injective",
+        "result": "pass"
+      },
+      {
+        "check": "R09_STATUS_SOURCE_MISSING",
+        "detail": "status list present",
+        "result": "pass"
+      },
+      {
+        "check": "R10_STATUS_SOURCE_NOT_ACCEPTED",
+        "detail": "status:municipal-delegation-registry",
+        "result": "pass"
+      },
+      {
+        "check": "R11_STATUS_STALE",
+        "detail": "status age 979 s <= 3600 s",
+        "result": "pass"
+      },
+      {
+        "check": "R12_DELEGATION_REVOKED",
+        "detail": "del-002 active",
+        "result": "pass"
+      },
+      {
+        "check": "R13_DELEGATION_SUSPENDED",
+        "detail": "del-002 active",
+        "result": "pass"
+      },
+      {
+        "check": "R14_DELEGATION_NOT_VALID_AT_EVENT",
+        "detail": "2026-05-01T00:00:00Z..2026-06-30T23:59:59Z contains 2026-05-27T11:14:19Z",
+        "result": "pass"
+      },
+      {
+        "check": "R15_ACTION_OUTSIDE_SCOPE",
+        "detail": "enrich in ['read', 'enrich']",
+        "result": "pass"
+      },
+      {
+        "check": "R16_CO_APPROVAL_REQUIRED",
+        "detail": "enrich needs no co-approval",
+        "result": "skip"
+      },
+      {
+        "check": "R17_TIMESTAMP_ROOT_NOT_ACCEPTED",
+        "detail": "root:municipal-tsa-root",
+        "result": "pass"
+      },
+      {
+        "check": "R18_CLOCK_SKEW_EXCEEDED",
+        "detail": "|issued_at - tsa.time| = 1 s <= 30 s",
+        "result": "pass"
+      },
+      {
+        "check": "R19_BINDING_AGE_EXCEEDED",
+        "detail": "tsa.time - carrier.observed_at = 3 s <= 600 s",
+        "result": "pass"
+      },
+      {
+        "check": "R20_TIMESTAMP_OUTSIDE_WINDOW",
+        "detail": "presented_at - tsa.time = 117 s <= 900 s",
+        "result": "pass"
+      },
+      {
+        "check": "R21_RUNTIME_PROFILE_NOT_ALLOWED",
+        "detail": "ir-enrichment-model/2026.05",
+        "result": "pass"
+      }
+    ]
+  },
+  "depends_on": {
+    "carrier_config": "sha256:552515653da93e3a6a7e4f278fde4d9bc63ff8a78c99da3fe0ab9b41e7a7c7b3",
+    "policy_parameters": "sha256:09b261d292d5b9391441bbb2f5494ea27f979db97d3864cab51e9549c16fc537",
+    "runtime_profile": "sha256:037b82a0aac2c86c6df000c6813bda918d8c458be47c3ca32e39053a76fd9925",
+    "status": "sha256:2b2fce422fa838c17235acb8f072b1afc310da6d93c75de44953d394844f693f",
+    "trust_anchors": "sha256:7307aa0c6557b697d09278f0ddc56c4d9bf1f96e31048c0fef698ac803bd61c2"
+  },
+  "first_failure_layer": "policy",
+  "fixture": "fixtures/brokered-evidence-fixtures/E03_brokered_untrusted_root.json",
+  "fixture_sha256": "ee01cb6e23bf011f791f9e9becb5f3e84a943fec201d647f73c626bbc445d07b",
+  "hold_reason": null,
+  "policy_id": "rp-policy:municipal-soc/0.2",
+  "predicates": {
+    "binding_ok": true,
+    "carrier_ok": true,
+    "evidence_ok": true,
+    "policy_ok": false
+  },
+  "presented_at": "2026-05-27T11:16:19Z",
+  "reason": "issuer root is outside the relying party's accepted-root set",
+  "reason_code": "R04_ROOT_NOT_ACCEPTED",
+  "receipt_id": "urn:uuid:24192df5-37e8-5a8a-b949-88cb4f51d8e9",
+  "verdict": "rejected",
+  "verifier_profile": "ecr-verifier/0.2"
+}

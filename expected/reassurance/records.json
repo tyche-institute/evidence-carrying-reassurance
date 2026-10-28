@@ -1,0 +1,602 @@
+[
+  {
+    "affected": [],
+    "at": "2026-06-03T09:00:00Z",
+    "claims_after": {
+      "G0": "accepted",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 1,
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "policy",
+      "status_list"
+    ],
+    "kind": "trust_list_changed",
+    "missed": [],
+    "note": "vendor root admitted for read-only actions",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:1527082f864e1ec36c4b074b90937d43ba1541d321cf93e9c3fea719ebb017ab",
+    "policy_digest_before": "sha256:fb3731056497c2cec4b7dc4c688f2b9c12eeeca03de9eaff617da155a63bb908",
+    "reopened_claims": [
+      "G3",
+      "G4"
+    ],
+    "selected": 0,
+    "selected_whole_input": 3,
+    "standing": 3
+  },
+  {
+    "affected": [
+      "urn:uuid:29e5b21f-29ca-5d0b-bf7c-18900ac5d59c"
+    ],
+    "at": "2026-06-10T08:30:00Z",
+    "claims_after": {
+      "G0": "accepted",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 2,
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "status_list"
+    ],
+    "kind": "status_changed",
+    "missed": [],
+    "note": "registry re-issues the list with del-002 revoked",
+    "outcome_changed": 1,
+    "outcomes": [
+      {
+        "case_id": "P02_brokered_trusted_issuer",
+        "changed_inputs": [
+          "status"
+        ],
+        "outcome": "revoked",
+        "reason_code": "R12_DELEGATION_REVOKED",
+        "receipt_id": "urn:uuid:29e5b21f-29ca-5d0b-bf7c-18900ac5d59c"
+      }
+    ],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:1527082f864e1ec36c4b074b90937d43ba1541d321cf93e9c3fea719ebb017ab",
+    "policy_digest_before": "sha256:1527082f864e1ec36c4b074b90937d43ba1541d321cf93e9c3fea719ebb017ab",
+    "reopened_claims": [
+      "G4"
+    ],
+    "selected": 1,
+    "selected_whole_input": 3,
+    "standing": 3
+  },
+  {
+    "affected": [],
+    "at": "2026-06-17T07:00:00Z",
+    "claims_after": {
+      "G0": "pending",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "pending"
+    },
+    "event_seq": 3,
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "status_list"
+    ],
+    "kind": "runtime_profile_changed",
+    "missed": [],
+    "note": "model ir-enrichment-model/2026.05 -> ir-enrichment-model/2026.07 deployed; policy unchanged",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {
+      "G0": "regression result for the runtime profile in force + policy update admitting or withdrawing the profile",
+      "G5": "re-assessment record"
+    },
+    "policy_digest_after": "sha256:1527082f864e1ec36c4b074b90937d43ba1541d321cf93e9c3fea719ebb017ab",
+    "policy_digest_before": "sha256:1527082f864e1ec36c4b074b90937d43ba1541d321cf93e9c3fea719ebb017ab",
+    "reopened_claims": [
+      "G0",
+      "G3",
+      "G5"
+    ],
+    "selected": 0,
+    "selected_whole_input": 2,
+    "standing": 2
+  },
+  {
+    "affected": [],
+    "at": "2026-06-17T15:00:00Z",
+    "claim": "G5",
+    "claims_after": {
+      "G0": "pending",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 4,
+    "evidence": {
+      "reassessment_record": "re-assessment of the enrichment workflow under the new model"
+    },
+    "frozen_decisions": [],
+    "held_actions": [
+      "urn:uuid:39a06b11-f434-5570-9872-50e7709d6497"
+    ],
+    "inputs_changed": [],
+    "kind": "evidence_attached",
+    "missed": [],
+    "note": "re-assessment record filed",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {
+      "G0": "regression result for the runtime profile in force + policy update admitting or withdrawing the profile"
+    },
+    "policy_digest_after": "sha256:1527082f864e1ec36c4b074b90937d43ba1541d321cf93e9c3fea719ebb017ab",
+    "policy_digest_before": "sha256:1527082f864e1ec36c4b074b90937d43ba1541d321cf93e9c3fea719ebb017ab",
+    "released": [],
+    "replayed": [],
+    "selected": 0,
+    "standing": 2
+  },
+  {
+    "affected": [],
+    "at": "2026-06-17T16:00:00Z",
+    "claim": "G0",
+    "claims_after": {
+      "G0": "accepted",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 5,
+    "evidence": {
+      "policy_update": "rp-policy:municipal-soc/0.2 admits ir-enrichment-model/2026.07",
+      "regression_result": "pass: 48/48 enrichment regression cases under ir-enrichment-model/2026.07"
+    },
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "policy",
+      "status_list"
+    ],
+    "kind": "evidence_attached",
+    "missed": [],
+    "note": "regression passed; policy admits the new profile",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:467bedba69dd849d8da336049198bef5a1bffb15248a12277dc5f3f8bb84bf30",
+    "policy_digest_before": "sha256:1527082f864e1ec36c4b074b90937d43ba1541d321cf93e9c3fea719ebb017ab",
+    "released": [
+      {
+        "case_id": "S01_mutate_with_co_approval",
+        "reason_code": null,
+        "receipt_id": "urn:uuid:39a06b11-f434-5570-9872-50e7709d6497",
+        "verdict": "accepted"
+      }
+    ],
+    "replayed": [],
+    "selected": 0,
+    "selected_whole_input": 2,
+    "standing": 2
+  },
+  {
+    "affected": [],
+    "at": "2026-06-20T10:00:00Z",
+    "claims_after": {
+      "G0": "pending",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 6,
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "status_list"
+    ],
+    "kind": "action_class_escalation",
+    "missed": [],
+    "note": "mutation requested under a read/enrich delegation",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {
+      "G0": "policy approval of the new action scope (human-approval rule)"
+    },
+    "policy_digest_after": "sha256:467bedba69dd849d8da336049198bef5a1bffb15248a12277dc5f3f8bb84bf30",
+    "policy_digest_before": "sha256:467bedba69dd849d8da336049198bef5a1bffb15248a12277dc5f3f8bb84bf30",
+    "reopened_claims": [
+      "G0",
+      "G4"
+    ],
+    "selected": 0,
+    "selected_whole_input": 4,
+    "standing": 4
+  },
+  {
+    "affected": [],
+    "at": "2026-06-20T14:00:00Z",
+    "claim": "G0",
+    "claims_after": {
+      "G0": "accepted",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 7,
+    "evidence": {
+      "policy_approval": "SOC lead approves scope read/enrich/mutate for the agent under del-006 with co-approval"
+    },
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [],
+    "kind": "evidence_attached",
+    "missed": [],
+    "note": "scope approved",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:467bedba69dd849d8da336049198bef5a1bffb15248a12277dc5f3f8bb84bf30",
+    "policy_digest_before": "sha256:467bedba69dd849d8da336049198bef5a1bffb15248a12277dc5f3f8bb84bf30",
+    "released": [],
+    "replayed": [],
+    "selected": 0,
+    "standing": 4
+  },
+  {
+    "affected": [],
+    "at": "2026-06-24T09:00:00Z",
+    "claims_after": {
+      "G0": "accepted",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 8,
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "policy",
+      "status_list"
+    ],
+    "kind": "carrier_config_changed",
+    "missed": [],
+    "note": "second service admitted on the carrier",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:ba39cd290be21bdb879e980287e2efe0d9a60b4d76a259351f76c0ac65157bc2",
+    "policy_digest_before": "sha256:467bedba69dd849d8da336049198bef5a1bffb15248a12277dc5f3f8bb84bf30",
+    "reopened_claims": [
+      "G1",
+      "G2"
+    ],
+    "selected": 0,
+    "selected_whole_input": 4,
+    "standing": 4
+  },
+  {
+    "affected": [],
+    "at": "2026-06-26T10:00:00Z",
+    "claims_after": {
+      "G0": "accepted",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 9,
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "policy",
+      "status_list"
+    ],
+    "kind": "trust_list_changed",
+    "missed": [],
+    "note": "negative control: a second approver registered",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:517669cabb43d6ee5b49dad471d3fd64ef7bdc36b69bb96dfc7b03e16b062188",
+    "policy_digest_before": "sha256:ba39cd290be21bdb879e980287e2efe0d9a60b4d76a259351f76c0ac65157bc2",
+    "reopened_claims": [
+      "G3",
+      "G4"
+    ],
+    "selected": 0,
+    "selected_whole_input": 4,
+    "standing": 4
+  },
+  {
+    "affected": [
+      "urn:uuid:022aa262-0c7e-50b2-ae9b-9190ad3f0835",
+      "urn:uuid:3a450d22-8f89-537c-baa1-5ddc160b71b2",
+      "urn:uuid:49395060-13cf-58c2-81e5-1b1e05c3d628"
+    ],
+    "at": "2026-06-29T09:00:00Z",
+    "claims_after": {
+      "G0": "accepted",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 10,
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "status_list"
+    ],
+    "kind": "status_changed",
+    "missed": [],
+    "note": "registry re-issues del-001 after renewal; status active",
+    "outcome_changed": 0,
+    "outcomes": [
+      {
+        "case_id": "P01_direct_trusted_issuer",
+        "changed_inputs": [
+          "status"
+        ],
+        "outcome": "reaffirmed",
+        "reason_code": null,
+        "receipt_id": "urn:uuid:022aa262-0c7e-50b2-ae9b-9190ad3f0835"
+      },
+      {
+        "case_id": "P14_clock_skew_inside_window",
+        "changed_inputs": [
+          "status"
+        ],
+        "outcome": "reaffirmed",
+        "reason_code": null,
+        "receipt_id": "urn:uuid:3a450d22-8f89-537c-baa1-5ddc160b71b2"
+      },
+      {
+        "case_id": "S04_read_with_new_model_version_after_policy_update",
+        "changed_inputs": [
+          "status"
+        ],
+        "outcome": "reaffirmed",
+        "reason_code": null,
+        "receipt_id": "urn:uuid:49395060-13cf-58c2-81e5-1b1e05c3d628"
+      }
+    ],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:517669cabb43d6ee5b49dad471d3fd64ef7bdc36b69bb96dfc7b03e16b062188",
+    "policy_digest_before": "sha256:517669cabb43d6ee5b49dad471d3fd64ef7bdc36b69bb96dfc7b03e16b062188",
+    "reopened_claims": [
+      "G4"
+    ],
+    "selected": 3,
+    "selected_whole_input": 4,
+    "standing": 4
+  },
+  {
+    "affected": [
+      "urn:uuid:022aa262-0c7e-50b2-ae9b-9190ad3f0835"
+    ],
+    "at": "2026-06-30T09:00:00Z",
+    "claims_after": {
+      "G0": "pending",
+      "G1": "pending",
+      "G2": "pending",
+      "G3": "pending",
+      "G4": "pending",
+      "G5": "pending"
+    },
+    "event_seq": 11,
+    "frozen_decisions": [
+      "urn:uuid:022aa262-0c7e-50b2-ae9b-9190ad3f0835"
+    ],
+    "held_actions": [],
+    "inputs_changed": [],
+    "kind": "audit_challenge",
+    "missed": [],
+    "note": "auditor challenges the enrichment decision",
+    "outcome_changed": 0,
+    "outcomes": [
+      {
+        "case_id": "P01_direct_trusted_issuer",
+        "changed_inputs": [],
+        "outcome": "frozen",
+        "reason_code": null,
+        "receipt_id": "urn:uuid:022aa262-0c7e-50b2-ae9b-9190ad3f0835"
+      }
+    ],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:517669cabb43d6ee5b49dad471d3fd64ef7bdc36b69bb96dfc7b03e16b062188",
+    "policy_digest_before": "sha256:517669cabb43d6ee5b49dad471d3fd64ef7bdc36b69bb96dfc7b03e16b062188",
+    "reopened_claims": [
+      "G0",
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5"
+    ],
+    "selected": 1,
+    "selected_whole_input": 0,
+    "standing": 4
+  },
+  {
+    "affected": [],
+    "at": "2026-06-30T13:00:00Z",
+    "claim": "G0;G1;G2;G3;G4;G5",
+    "claims_after": {
+      "G0": "accepted",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 12,
+    "evidence": {
+      "replay_bundle_digest": "sha256:7d50491dc1eb9cfab9db45ab224eb87e588b60514e83ef5808821e0dcadb2cb1",
+      "reviewer_note": "replay reproduces the recorded decision"
+    },
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "status_list"
+    ],
+    "kind": "evidence_attached",
+    "missed": [],
+    "note": "re-assurance record closes the challenge",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:517669cabb43d6ee5b49dad471d3fd64ef7bdc36b69bb96dfc7b03e16b062188",
+    "policy_digest_before": "sha256:517669cabb43d6ee5b49dad471d3fd64ef7bdc36b69bb96dfc7b03e16b062188",
+    "released": [
+      {
+        "case_id": "S05_mutate_during_audit",
+        "reason_code": null,
+        "receipt_id": "urn:uuid:bdcc75b0-a3b2-509f-bf2b-facb02009609",
+        "verdict": "accepted"
+      }
+    ],
+    "replayed": [
+      {
+        "case_id": "P01_direct_trusted_issuer",
+        "outcome": "reaffirmed",
+        "reason_code": null,
+        "receipt_id": "urn:uuid:022aa262-0c7e-50b2-ae9b-9190ad3f0835",
+        "replay_matches_recorded": true
+      }
+    ],
+    "selected": 0,
+    "selected_whole_input": 3,
+    "standing": 3
+  },
+  {
+    "affected": [
+      "urn:uuid:39a06b11-f434-5570-9872-50e7709d6497",
+      "urn:uuid:3a450d22-8f89-537c-baa1-5ddc160b71b2",
+      "urn:uuid:022aa262-0c7e-50b2-ae9b-9190ad3f0835"
+    ],
+    "at": "2026-07-08T09:00:00Z",
+    "claims_after": {
+      "G0": "pending",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "pending"
+    },
+    "event_seq": 13,
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [
+      "allowed_runtime_profiles",
+      "status_list"
+    ],
+    "kind": "runtime_profile_changed",
+    "missed": [],
+    "note": "model ir-enrichment-model/2026.05 withdrawn from the allow-list after a defect report",
+    "outcome_changed": 3,
+    "outcomes": [
+      {
+        "case_id": "S01_mutate_with_co_approval",
+        "changed_inputs": [
+          "runtime_profile"
+        ],
+        "outcome": "revoked",
+        "reason_code": "R21_RUNTIME_PROFILE_NOT_ALLOWED",
+        "receipt_id": "urn:uuid:39a06b11-f434-5570-9872-50e7709d6497"
+      },
+      {
+        "case_id": "P14_clock_skew_inside_window",
+        "changed_inputs": [
+          "runtime_profile"
+        ],
+        "outcome": "revoked",
+        "reason_code": "R21_RUNTIME_PROFILE_NOT_ALLOWED",
+        "receipt_id": "urn:uuid:3a450d22-8f89-537c-baa1-5ddc160b71b2"
+      },
+      {
+        "case_id": "P01_direct_trusted_issuer",
+        "changed_inputs": [
+          "runtime_profile"
+        ],
+        "outcome": "revoked",
+        "reason_code": "R21_RUNTIME_PROFILE_NOT_ALLOWED",
+        "receipt_id": "urn:uuid:022aa262-0c7e-50b2-ae9b-9190ad3f0835"
+      }
+    ],
+    "pending_evidence": {
+      "G0": "regression result for the runtime profile in force + policy update admitting or withdrawing the profile",
+      "G5": "re-assessment record"
+    },
+    "policy_digest_after": "sha256:b03fbafc9fd3645210fa343bedf12c6cf7b769437d96e726b366df051bb110a0",
+    "policy_digest_before": "sha256:517669cabb43d6ee5b49dad471d3fd64ef7bdc36b69bb96dfc7b03e16b062188",
+    "reopened_claims": [
+      "G0",
+      "G3",
+      "G5"
+    ],
+    "selected": 3,
+    "selected_whole_input": 5,
+    "standing": 5
+  },
+  {
+    "affected": [],
+    "at": "2026-07-08T15:00:00Z",
+    "claim": "G0;G5",
+    "claims_after": {
+      "G0": "accepted",
+      "G1": "accepted",
+      "G2": "accepted",
+      "G3": "accepted",
+      "G4": "accepted",
+      "G5": "accepted"
+    },
+    "event_seq": 14,
+    "evidence": {
+      "defect_report": "DR-2026-031 filed against ir-enrichment-model/2026.05",
+      "policy_update": "rp-policy:municipal-soc/0.2 withdraws ir-enrichment-model/2026.05",
+      "review_list": [
+        "P01_direct_trusted_issuer",
+        "P14_clock_skew_inside_window",
+        "S01_mutate_with_co_approval"
+      ]
+    },
+    "frozen_decisions": [],
+    "held_actions": [],
+    "inputs_changed": [],
+    "kind": "evidence_attached",
+    "missed": [],
+    "note": "defect report filed; revoked decisions listed for operator review",
+    "outcome_changed": 0,
+    "outcomes": [],
+    "pending_evidence": {},
+    "policy_digest_after": "sha256:b03fbafc9fd3645210fa343bedf12c6cf7b769437d96e726b366df051bb110a0",
+    "policy_digest_before": "sha256:b03fbafc9fd3645210fa343bedf12c6cf7b769437d96e726b366df051bb110a0",
+    "released": [],
+    "replayed": [],
+    "selected": 0,
+    "standing": 2
+  }
+]

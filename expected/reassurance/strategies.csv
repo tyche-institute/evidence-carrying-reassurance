@@ -1,0 +1,5 @@
+strategy,description,input_changes,re_appraisals,revocations_caught,revocations_missed
+static_verdict,never re-appraise a recorded decision,10,0,0,4
+reappraise_all,re-appraise every standing decision at every input change,10,34,4,0
+whole_input_digest,re-appraise the decisions whose digest over a whole changed input differs (no slices),10,34,4,0
+digest_selected,re-appraise the decisions whose input-slice digests changed (this article),10,7,4,0

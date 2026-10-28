@@ -1,0 +1,191 @@
+{
+  "carrier_record": {
+    "carrier": "x-road",
+    "client": "DEV/COM/4321/TestClient",
+    "fault": null,
+    "http_status": 200,
+    "instance": "DEV",
+    "message_id": "tyche-real-run-20260527T111419Z",
+    "message_log": {
+      "consumer_rows": [
+        4,
+        5
+      ],
+      "consumer_security_server": "DEV:COM:4321:SS1",
+      "provider_rows": [
+        9,
+        10
+      ],
+      "provider_security_server": "DEV:COM:1234:SS0",
+      "ss0_logrecord_csv_sha256": "168cd2267b4f82c6b5598573eca51d3e8d051fe9586df65aab7ba0d1b14a364a",
+      "ss1_logrecord_csv_sha256": "973b7af0d881352fe6045f583cc60afd9826742635a02786abdef82f7aaefba5"
+    },
+    "observed_at": "2026-05-27T11:14:19Z",
+    "request_hash": "g/UXFVSL4VZq6dO+F/FhlYaJP/JWHT/+diOge5vGHJKF016NrhKs8G/xu1KIxK2IxRRFgK1yhn5jovsRyyP7MA==",
+    "request_id": "679b103a-b24c-4076-b49d-15cf2f3a71e6",
+    "request_payload_sha256": "822d59bc55cfc3d85555b792ccd6036efa55854b5be71408f078c2e0e4cdac6b",
+    "response_body_sha256": "2c7713a2b73cc7821c0e9a9b227565161586e7bad09b19f82c21ff53d65192e8",
+    "response_headers_sha256": "2645f8434cafe95aef5104eb03eb41b88ceb58022be7940da02cf6a2967dd4b4",
+    "service": "DEV/COM/1234/TestService/mock1",
+    "source": {
+      "artifact": "carrier/local-xroad-dev/message-binding.json",
+      "basis": "observed-local-dev-stack",
+      "run_date": "2026-05-27",
+      "sha256": "2a37ffb62cbc17a38997814ba9c06054abc157c62cdcfe409e23183993e45ba3",
+      "xroad_commit": "3c37ca1eced1f0ca46d0171ee0703649db254081"
+    },
+    "status": "accepted"
+  },
+  "case_id": "P10_stale_status_source",
+  "co_approval": null,
+  "evidence": {
+    "payload": {
+      "action": {
+        "class": "enrich",
+        "summary": "append a structured asset-context enrichment note to the case file",
+        "target": "case-file:INC-2026-0427",
+        "tool": "case-file.append"
+      },
+      "carrier": {
+        "carrier": "x-road",
+        "message_id": "tyche-real-run-20260527T111419Z",
+        "request_digest": "822d59bc55cfc3d85555b792ccd6036efa55854b5be71408f078c2e0e4cdac6b",
+        "request_id": "679b103a-b24c-4076-b49d-15cf2f3a71e6",
+        "response_digest": "2c7713a2b73cc7821c0e9a9b227565161586e7bad09b19f82c21ff53d65192e8"
+      },
+      "delegation": {
+        "grantee": "urn:agent:municipal-soc:ir-enrichment",
+        "grantor": "analyst:mara",
+        "id": "del-001",
+        "scope": [
+          "read",
+          "enrich"
+        ],
+        "status_source": "status:municipal-delegation-registry",
+        "valid_from": "2026-05-01T00:00:00Z",
+        "valid_until": "2026-06-30T23:59:59Z"
+      },
+      "issued_at": "2026-05-27T11:14:21Z",
+      "issuer": {
+        "endorsements": [
+          {
+            "payload": {
+              "issuer_status": "active",
+              "profile": "ecr-key-endorsement/0.2",
+              "root": "root:municipal-agent-ca",
+              "root_key_id": "sha256:24e6ca390ce478fb5970fd2ca7e9a8e686ae6e552235962054bcdcdcc3e121f3",
+              "subject": "issuer:soc-agent-platform",
+              "subject_key_id": "sha256:2a620b7902b930a04913da724a52b163377f69c74627daa85a01a47a7a21372a",
+              "subject_public_key": "09ma0VgVwqdmE2KPJoaEZMVSQ2gfb5XcK1Y97+7rYrs=",
+              "valid_from": "2026-01-01T00:00:00Z",
+              "valid_until": "2027-01-01T00:00:00Z"
+            },
+            "signature": {
+              "alg": "Ed25519",
+              "canon": "RFC8785",
+              "key_id": "sha256:24e6ca390ce478fb5970fd2ca7e9a8e686ae6e552235962054bcdcdcc3e121f3",
+              "public_key": "Sl7s6ow0KprIfHvB0bmXHdnhk0Ky+ilk4SSQBLLp3SI=",
+              "value": "qaZhkv8VRGwkC1nNUD/ZkSRRkZnoiJu3xNnFY6fk6G8BefFD7qA4gJrRSeQPdp/PEbGIo7QuS/OJFNHQ49SHCA=="
+            }
+          }
+        ],
+        "id": "issuer:soc-agent-platform",
+        "key_id": "sha256:2a620b7902b930a04913da724a52b163377f69c74627daa85a01a47a7a21372a",
+        "root": "root:municipal-agent-ca"
+      },
+      "profile": "ecr-receipt/0.2",
+      "receipt_id": "urn:uuid:b006a328-02a8-58ec-aa9a-42258103cc0e",
+      "runtime": {
+        "model_version": "ir-enrichment-model/2026.05",
+        "prompt_profile_digest": "sha256:1f8f068a2b6927de7a2feeb43037db33c723783e80fc3a420ab4ffbfeafec637",
+        "tool_profile_digest": "sha256:b5d760f5e703506dcbee22db276fb1759cb71965df463454b4de9fa980ea523e",
+        "verifier_profile": "ecr-verifier/0.2"
+      },
+      "subject": {
+        "agent_id": "urn:agent:municipal-soc:ir-enrichment",
+        "runtime_instance": "ir-enrichment-01"
+      }
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "canon": "RFC8785",
+      "key_id": "sha256:2a620b7902b930a04913da724a52b163377f69c74627daa85a01a47a7a21372a",
+      "public_key": "09ma0VgVwqdmE2KPJoaEZMVSQ2gfb5XcK1Y97+7rYrs=",
+      "value": "RXdMCwp4cloDsMsEFio/dAr5UXq3wPXPSgDqkc1o58eWT7N5jMzo4uT2EfG7whhxPq/ZVbLbUk+pytLMTfQtCQ=="
+    }
+  },
+  "presented_at": "2026-05-27T11:16:19Z",
+  "profile": "ecr-packet/0.2",
+  "status_list": {
+    "payload": {
+      "entries": {
+        "del-001": {
+          "status": "active"
+        },
+        "del-002": {
+          "status": "active"
+        },
+        "del-003": {
+          "since": "2026-05-20T09:00:00Z",
+          "status": "revoked"
+        },
+        "del-004": {
+          "since": "2026-05-26T16:00:00Z",
+          "status": "suspended"
+        },
+        "del-005": {
+          "status": "active"
+        },
+        "del-006": {
+          "status": "active"
+        }
+      },
+      "issued_at": "2026-05-27T08:00:00Z",
+      "profile": "ecr-status-list/0.2",
+      "source": "status:municipal-delegation-registry"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "canon": "RFC8785",
+      "key_id": "sha256:aff5b5ee4a5535e904f5fde7c710937597d677685b0430a377d18d45a3ff5b43",
+      "public_key": "BnpYYALYIbXBFrXhPqM24Zq/Vd5oN2GRTazZUVWmnD8=",
+      "value": "jA3gvhFpMudRpweahtUPKJajBUUyEo7uQsOEQyihxjA64iu4jBhfytilgUkQyGpjkA9PPsRI2vISBvbd0aOGAw=="
+    }
+  },
+  "timestamp_token": {
+    "payload": {
+      "digest": "sha256:8b36df1a29df4d3fe35ec1d4000f9c0d72e631e55f670bba1e38d5d292b7f3ff",
+      "endorsement": {
+        "payload": {
+          "issuer_status": "active",
+          "profile": "ecr-key-endorsement/0.2",
+          "root": "root:municipal-tsa-root",
+          "root_key_id": "sha256:d8685def003e4bd9f669f3bd6e77de3ec4878be98fc437cb7b25606b44b53634",
+          "subject": "tsa:municipal-tsa",
+          "subject_key_id": "sha256:fd5955f9e114bbc1ba0c1141b9e2e8bb76c8f903a0784b1fd7842d3f397c9824",
+          "subject_public_key": "t6VkcWl7iKrxcox49hF4/pOcM3Wfy0umOy8R5aj18bg=",
+          "valid_from": "2026-01-01T00:00:00Z",
+          "valid_until": "2027-01-01T00:00:00Z"
+        },
+        "signature": {
+          "alg": "Ed25519",
+          "canon": "RFC8785",
+          "key_id": "sha256:d8685def003e4bd9f669f3bd6e77de3ec4878be98fc437cb7b25606b44b53634",
+          "public_key": "N+VuhZD+g4sQswWZCH3TRH2c/JIgMh8rkJOqjEHdHeM=",
+          "value": "uxFU1j0E2hBaw7pG1pXX1RKMe8W8GjqcJbmglhO0Rl8SJgj+UR97/Yv3Bw02PlzAJb6cZdnzVWC9d6NhkfxvAA=="
+        }
+      },
+      "profile": "ecr-timestamp/0.2",
+      "root": "root:municipal-tsa-root",
+      "time": "2026-05-27T11:14:22Z",
+      "tsa": "tsa:municipal-tsa"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "canon": "RFC8785",
+      "key_id": "sha256:fd5955f9e114bbc1ba0c1141b9e2e8bb76c8f903a0784b1fd7842d3f397c9824",
+      "public_key": "t6VkcWl7iKrxcox49hF4/pOcM3Wfy0umOy8R5aj18bg=",
+      "value": "wkZ8/T+KaQnlgEaODGf+S9xBWUXAQ8jIaMrALP9L3rasbGk1Ho/BlVqe/OBO/U0X9VRrYTMVEeuHOIKtjtkqCg=="
+    }
+  }
+}

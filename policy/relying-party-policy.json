@@ -1,0 +1,90 @@
+{
+  "accepted_brokers": {
+    "broker:municipal-evidence-broker": {
+      "key_id": "sha256:cd7f3951aa117985917922cf4c1b853426fb8df93a7575752487bb0bf7054a05",
+      "mapping_ids": [
+        "map-2026-05"
+      ]
+    }
+  },
+  "accepted_roots": {
+    "root:municipal-agent-ca": {
+      "accepted_for": [
+        "read",
+        "enrich",
+        "mutate"
+      ],
+      "key_id": "sha256:24e6ca390ce478fb5970fd2ca7e9a8e686ae6e552235962054bcdcdcc3e121f3"
+    },
+    "root:partner-ca": {
+      "accepted_for": [
+        "read",
+        "enrich"
+      ],
+      "key_id": "sha256:a171b283b642dad2b5368a6069e46e6e66826c2544d324df25a1e51fba39e6d1"
+    }
+  },
+  "accepted_timestamp_roots": {
+    "root:municipal-tsa-root": {
+      "accepted_for": [
+        "read",
+        "enrich",
+        "mutate"
+      ],
+      "key_id": "sha256:d8685def003e4bd9f669f3bd6e77de3ec4878be98fc437cb7b25606b44b53634"
+    }
+  },
+  "action_classes": {
+    "enrich": {
+      "co_approval": false,
+      "high_risk": false
+    },
+    "mutate": {
+      "co_approval": true,
+      "high_risk": true
+    },
+    "read": {
+      "co_approval": false,
+      "high_risk": false
+    }
+  },
+  "allowed_runtime_profiles": {
+    "model_versions": [
+      "ir-enrichment-model/2026.05"
+    ],
+    "prompt_profile_digests": [
+      "sha256:1f8f068a2b6927de7a2feeb43037db33c723783e80fc3a420ab4ffbfeafec637"
+    ],
+    "tool_profile_digests": [
+      "sha256:b5d760f5e703506dcbee22db276fb1759cb71965df463454b4de9fa980ea523e"
+    ]
+  },
+  "approvers": {
+    "approver:soc-lead": {
+      "key_id": "sha256:32660c216038aa8ce4f71d221275573fdf130321c921482cf90697bc9658d25c"
+    }
+  },
+  "carrier": {
+    "accepted_clients": [
+      "DEV/COM/4321/TestClient"
+    ],
+    "accepted_services": [
+      "DEV/COM/1234/TestService/mock1"
+    ],
+    "carrier": "x-road",
+    "instance": "DEV",
+    "require_message_log": true
+  },
+  "carrier_binding_max_age_s": 600,
+  "clock_skew_tolerance_s": 30,
+  "description": "Relying-party policy of the municipal security operations centre for agentic incident enrichment.",
+  "freshness_window_s": 900,
+  "policy_id": "rp-policy:municipal-soc/0.2",
+  "require_verifier_profile": "ecr-verifier/0.2",
+  "status_max_age_s": 3600,
+  "status_sources": {
+    "status:municipal-delegation-registry": {
+      "key_id": "sha256:aff5b5ee4a5535e904f5fde7c710937597d677685b0430a377d18d45a3ff5b43"
+    }
+  }
+}

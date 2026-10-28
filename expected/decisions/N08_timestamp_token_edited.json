@@ -1,0 +1,150 @@
+{
+  "accepted": false,
+  "action_class": "enrich",
+  "appraised_at": "2026-05-27T11:16:19Z",
+  "case_id": "N08_timestamp_token_edited",
+  "checks": {
+    "binding": [
+      {
+        "check": "B01_NO_CARRIER_RECORD",
+        "detail": "carrier record accepted",
+        "result": "pass"
+      },
+      {
+        "check": "B02_NO_EVIDENCE",
+        "detail": "evidence object present",
+        "result": "pass"
+      },
+      {
+        "check": "B03_MESSAGE_ID_MISMATCH",
+        "detail": "tyche-real-run-20260527T111419Z",
+        "result": "pass"
+      },
+      {
+        "check": "B04_REQUEST_DIGEST_MISMATCH",
+        "detail": "822d59bc55cfc3d85555b792ccd6036efa55854b5be71408f078c2e0e4cdac6b",
+        "result": "pass"
+      },
+      {
+        "check": "B05_RESPONSE_DIGEST_MISMATCH",
+        "detail": "2c7713a2b73cc7821c0e9a9b227565161586e7bad09b19f82c21ff53d65192e8",
+        "result": "pass"
+      },
+      {
+        "check": "B06_BROKER_BINDING_ALTERED",
+        "detail": "direct receipt",
+        "result": "skip"
+      }
+    ],
+    "carrier": [
+      {
+        "check": "K01_CARRIER_RECORD_MISSING",
+        "detail": "carrier record present",
+        "result": "pass"
+      },
+      {
+        "check": "K02_CARRIER_REJECTED",
+        "detail": "carrier status accepted",
+        "result": "pass"
+      },
+      {
+        "check": "K03_CARRIER_CONFIG_MISMATCH",
+        "detail": "DEV DEV/COM/4321/TestClient -> DEV/COM/1234/TestService/mock1",
+        "result": "pass"
+      },
+      {
+        "check": "K04_MESSAGE_LOG_MISSING",
+        "detail": "provider rows [9, 10], consumer rows [4, 5]",
+        "result": "pass"
+      },
+      {
+        "check": "K05_CARRIER_VALIDATION_UNAVAILABLE",
+        "detail": "validation and timestamping chains available",
+        "result": "pass"
+      }
+    ],
+    "evidence": [
+      {
+        "check": "V01_EVIDENCE_MISSING",
+        "detail": "evidence object present",
+        "result": "pass"
+      },
+      {
+        "check": "V02_PROFILE_UNKNOWN",
+        "detail": "ecr-receipt/0.2",
+        "result": "pass"
+      },
+      {
+        "check": "V03_REQUIRED_FIELD_MISSING",
+        "detail": "all mandatory fields present",
+        "result": "pass"
+      },
+      {
+        "check": "V04_SIGNATURE_INVALID",
+        "detail": "issuer signature verifies; key_id matches issuer.key_id",
+        "result": "pass"
+      },
+      {
+        "check": "V05_ENDORSEMENT_INVALID",
+        "detail": "1 endorsement(s) verify",
+        "result": "pass"
+      },
+      {
+        "check": "V06_BROKER_SIGNATURE_INVALID",
+        "detail": "direct receipt",
+        "result": "skip"
+      },
+      {
+        "check": "V07_BROKER_DIGEST_MISMATCH",
+        "detail": "direct receipt",
+        "result": "skip"
+      },
+      {
+        "check": "V08_TIMESTAMP_TOKEN_INVALID",
+        "detail": "signature does not verify over canonical payload",
+        "result": "fail"
+      },
+      {
+        "check": "V09_STATUS_LIST_INVALID",
+        "detail": "status:municipal-delegation-registry issued 2026-05-27T11:00:00Z",
+        "result": "pass"
+      },
+      {
+        "check": "V10_CO_APPROVAL_INVALID",
+        "detail": "no co-approval (policy decides)",
+        "result": "skip"
+      }
+    ],
+    "policy": [
+      {
+        "check": "R00_UPSTREAM_PREDICATE_FAILED",
+        "detail": "",
+        "result": "fail"
+      }
+    ]
+  },
+  "depends_on": {
+    "carrier_config": "sha256:552515653da93e3a6a7e4f278fde4d9bc63ff8a78c99da3fe0ab9b41e7a7c7b3",
+    "policy_parameters": "sha256:09b261d292d5b9391441bbb2f5494ea27f979db97d3864cab51e9549c16fc537",
+    "runtime_profile": "sha256:037b82a0aac2c86c6df000c6813bda918d8c458be47c3ca32e39053a76fd9925",
+    "status": "sha256:98f0c946f5294794460a5916dece24d7763ea3e6e3c124b90688db32371ad2c5",
+    "trust_anchors": "sha256:bda33f8c1aba5ad0406af4c3259194c6ec131a74042a32ef91c1ff51bd634394"
+  },
+  "first_failure_layer": "evidence",
+  "fixture": "fixtures/coverage-controls/N08_timestamp_token_edited.json",
+  "fixture_sha256": "51e53a773da5107d2fca3b0dbd3a2f4d0f8ab8aad46f46cc6321ceaab21185d4",
+  "hold_reason": null,
+  "policy_id": "rp-policy:municipal-soc/0.2",
+  "predicates": {
+    "binding_ok": true,
+    "carrier_ok": true,
+    "evidence_ok": false,
+    "policy_ok": false
+  },
+  "presented_at": "2026-05-27T11:16:19Z",
+  "reason": "timestamp token does not verify, or does not cover the receipt payload digest",
+  "reason_code": "V08_TIMESTAMP_TOKEN_INVALID",
+  "receipt_id": "urn:uuid:eb43a658-3285-573c-be51-d53e5b5fb81b",
+  "verdict": "rejected",
+  "verifier_profile": "ecr-verifier/0.2"
+}

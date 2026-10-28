@@ -1,0 +1,150 @@
+{
+  "accepted": false,
+  "action_class": "mutate",
+  "appraised_at": "2026-05-27T11:16:19Z",
+  "case_id": "N10_co_approval_edited",
+  "checks": {
+    "binding": [
+      {
+        "check": "B01_NO_CARRIER_RECORD",
+        "detail": "carrier record accepted",
+        "result": "pass"
+      },
+      {
+        "check": "B02_NO_EVIDENCE",
+        "detail": "evidence object present",
+        "result": "pass"
+      },
+      {
+        "check": "B03_MESSAGE_ID_MISMATCH",
+        "detail": "tyche-real-run-20260527T111419Z",
+        "result": "pass"
+      },
+      {
+        "check": "B04_REQUEST_DIGEST_MISMATCH",
+        "detail": "822d59bc55cfc3d85555b792ccd6036efa55854b5be71408f078c2e0e4cdac6b",
+        "result": "pass"
+      },
+      {
+        "check": "B05_RESPONSE_DIGEST_MISMATCH",
+        "detail": "2c7713a2b73cc7821c0e9a9b227565161586e7bad09b19f82c21ff53d65192e8",
+        "result": "pass"
+      },
+      {
+        "check": "B06_BROKER_BINDING_ALTERED",
+        "detail": "direct receipt",
+        "result": "skip"
+      }
+    ],
+    "carrier": [
+      {
+        "check": "K01_CARRIER_RECORD_MISSING",
+        "detail": "carrier record present",
+        "result": "pass"
+      },
+      {
+        "check": "K02_CARRIER_REJECTED",
+        "detail": "carrier status accepted",
+        "result": "pass"
+      },
+      {
+        "check": "K03_CARRIER_CONFIG_MISMATCH",
+        "detail": "DEV DEV/COM/4321/TestClient -> DEV/COM/1234/TestService/mock1",
+        "result": "pass"
+      },
+      {
+        "check": "K04_MESSAGE_LOG_MISSING",
+        "detail": "provider rows [9, 10], consumer rows [4, 5]",
+        "result": "pass"
+      },
+      {
+        "check": "K05_CARRIER_VALIDATION_UNAVAILABLE",
+        "detail": "validation and timestamping chains available",
+        "result": "pass"
+      }
+    ],
+    "evidence": [
+      {
+        "check": "V01_EVIDENCE_MISSING",
+        "detail": "evidence object present",
+        "result": "pass"
+      },
+      {
+        "check": "V02_PROFILE_UNKNOWN",
+        "detail": "ecr-receipt/0.2",
+        "result": "pass"
+      },
+      {
+        "check": "V03_REQUIRED_FIELD_MISSING",
+        "detail": "all mandatory fields present",
+        "result": "pass"
+      },
+      {
+        "check": "V04_SIGNATURE_INVALID",
+        "detail": "issuer signature verifies; key_id matches issuer.key_id",
+        "result": "pass"
+      },
+      {
+        "check": "V05_ENDORSEMENT_INVALID",
+        "detail": "1 endorsement(s) verify",
+        "result": "pass"
+      },
+      {
+        "check": "V06_BROKER_SIGNATURE_INVALID",
+        "detail": "direct receipt",
+        "result": "skip"
+      },
+      {
+        "check": "V07_BROKER_DIGEST_MISMATCH",
+        "detail": "direct receipt",
+        "result": "skip"
+      },
+      {
+        "check": "V08_TIMESTAMP_TOKEN_INVALID",
+        "detail": "tsa:municipal-tsa at 2026-05-27T11:14:22Z over receipt payload digest",
+        "result": "pass"
+      },
+      {
+        "check": "V09_STATUS_LIST_INVALID",
+        "detail": "status:municipal-delegation-registry issued 2026-05-27T11:00:00Z",
+        "result": "pass"
+      },
+      {
+        "check": "V10_CO_APPROVAL_INVALID",
+        "detail": "signature does not verify over canonical payload",
+        "result": "fail"
+      }
+    ],
+    "policy": [
+      {
+        "check": "R00_UPSTREAM_PREDICATE_FAILED",
+        "detail": "",
+        "result": "fail"
+      }
+    ]
+  },
+  "depends_on": {
+    "carrier_config": "sha256:552515653da93e3a6a7e4f278fde4d9bc63ff8a78c99da3fe0ab9b41e7a7c7b3",
+    "policy_parameters": "sha256:c297e67b21eac9c33b037b0a076ae873f0542fa62345aab150c78a22b7c06a95",
+    "runtime_profile": "sha256:037b82a0aac2c86c6df000c6813bda918d8c458be47c3ca32e39053a76fd9925",
+    "status": "sha256:053ba84e615c936375e0c4f085644aa696956af1c0edf49c5da6e345cb6b7aa8",
+    "trust_anchors": "sha256:9cf3da9973bdbc604df4eee76ba7df11d975d0a338934a6bd9418e1f31a5a44c"
+  },
+  "first_failure_layer": "evidence",
+  "fixture": "fixtures/coverage-controls/N10_co_approval_edited.json",
+  "fixture_sha256": "f77c45d8192f77a703aa7ca1b3cc63320c5dbded2c3147fb357240804264382c",
+  "hold_reason": null,
+  "policy_id": "rp-policy:municipal-soc/0.2",
+  "predicates": {
+    "binding_ok": true,
+    "carrier_ok": true,
+    "evidence_ok": false,
+    "policy_ok": false
+  },
+  "presented_at": "2026-05-27T11:16:19Z",
+  "reason": "co-approval does not verify or does not cover the receipt payload digest",
+  "reason_code": "V10_CO_APPROVAL_INVALID",
+  "receipt_id": "urn:uuid:5e608e72-7c6a-5981-95b6-27b4cc6a6eea",
+  "verdict": "rejected",
+  "verifier_profile": "ecr-verifier/0.2"
+}

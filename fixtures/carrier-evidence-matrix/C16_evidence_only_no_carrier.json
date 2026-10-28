@@ -1,0 +1,155 @@
+{
+  "carrier_record": null,
+  "case_id": "C16_evidence_only_no_carrier",
+  "co_approval": null,
+  "evidence": {
+    "payload": {
+      "action": {
+        "class": "enrich",
+        "summary": "append a structured asset-context enrichment note to the case file",
+        "target": "case-file:INC-2026-0427",
+        "tool": "case-file.append"
+      },
+      "carrier": {
+        "carrier": "x-road",
+        "message_id": "tyche-real-run-20260527T111419Z",
+        "request_digest": "822d59bc55cfc3d85555b792ccd6036efa55854b5be71408f078c2e0e4cdac6b",
+        "request_id": "679b103a-b24c-4076-b49d-15cf2f3a71e6",
+        "response_digest": "2c7713a2b73cc7821c0e9a9b227565161586e7bad09b19f82c21ff53d65192e8"
+      },
+      "delegation": {
+        "grantee": "urn:agent:municipal-soc:ir-enrichment",
+        "grantor": "analyst:mara",
+        "id": "del-001",
+        "scope": [
+          "read",
+          "enrich"
+        ],
+        "status_source": "status:municipal-delegation-registry",
+        "valid_from": "2026-05-01T00:00:00Z",
+        "valid_until": "2026-06-30T23:59:59Z"
+      },
+      "issued_at": "2026-05-27T11:14:21Z",
+      "issuer": {
+        "endorsements": [
+          {
+            "payload": {
+              "issuer_status": "active",
+              "profile": "ecr-key-endorsement/0.2",
+              "root": "root:municipal-agent-ca",
+              "root_key_id": "sha256:24e6ca390ce478fb5970fd2ca7e9a8e686ae6e552235962054bcdcdcc3e121f3",
+              "subject": "issuer:soc-agent-platform",
+              "subject_key_id": "sha256:2a620b7902b930a04913da724a52b163377f69c74627daa85a01a47a7a21372a",
+              "subject_public_key": "09ma0VgVwqdmE2KPJoaEZMVSQ2gfb5XcK1Y97+7rYrs=",
+              "valid_from": "2026-01-01T00:00:00Z",
+              "valid_until": "2027-01-01T00:00:00Z"
+            },
+            "signature": {
+              "alg": "Ed25519",
+              "canon": "RFC8785",
+              "key_id": "sha256:24e6ca390ce478fb5970fd2ca7e9a8e686ae6e552235962054bcdcdcc3e121f3",
+              "public_key": "Sl7s6ow0KprIfHvB0bmXHdnhk0Ky+ilk4SSQBLLp3SI=",
+              "value": "qaZhkv8VRGwkC1nNUD/ZkSRRkZnoiJu3xNnFY6fk6G8BefFD7qA4gJrRSeQPdp/PEbGIo7QuS/OJFNHQ49SHCA=="
+            }
+          }
+        ],
+        "id": "issuer:soc-agent-platform",
+        "key_id": "sha256:2a620b7902b930a04913da724a52b163377f69c74627daa85a01a47a7a21372a",
+        "root": "root:municipal-agent-ca"
+      },
+      "profile": "ecr-receipt/0.2",
+      "receipt_id": "urn:uuid:bcb32647-4e62-51bc-a20c-1b27da6c302d",
+      "runtime": {
+        "model_version": "ir-enrichment-model/2026.05",
+        "prompt_profile_digest": "sha256:1f8f068a2b6927de7a2feeb43037db33c723783e80fc3a420ab4ffbfeafec637",
+        "tool_profile_digest": "sha256:b5d760f5e703506dcbee22db276fb1759cb71965df463454b4de9fa980ea523e",
+        "verifier_profile": "ecr-verifier/0.2"
+      },
+      "subject": {
+        "agent_id": "urn:agent:municipal-soc:ir-enrichment",
+        "runtime_instance": "ir-enrichment-01"
+      }
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "canon": "RFC8785",
+      "key_id": "sha256:2a620b7902b930a04913da724a52b163377f69c74627daa85a01a47a7a21372a",
+      "public_key": "09ma0VgVwqdmE2KPJoaEZMVSQ2gfb5XcK1Y97+7rYrs=",
+      "value": "M1M9WHT+WTxsn35ljQfAS8hVi12SEdCEXc46ms0RqedDVjsljNZX9/0r4+eV8T4NxbfX/fsn2pEhWYWh+sgLCA=="
+    }
+  },
+  "presented_at": "2026-05-27T11:16:19Z",
+  "profile": "ecr-packet/0.2",
+  "status_list": {
+    "payload": {
+      "entries": {
+        "del-001": {
+          "status": "active"
+        },
+        "del-002": {
+          "status": "active"
+        },
+        "del-003": {
+          "since": "2026-05-20T09:00:00Z",
+          "status": "revoked"
+        },
+        "del-004": {
+          "since": "2026-05-26T16:00:00Z",
+          "status": "suspended"
+        },
+        "del-005": {
+          "status": "active"
+        },
+        "del-006": {
+          "status": "active"
+        }
+      },
+      "issued_at": "2026-05-27T11:00:00Z",
+      "profile": "ecr-status-list/0.2",
+      "source": "status:municipal-delegation-registry"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "canon": "RFC8785",
+      "key_id": "sha256:aff5b5ee4a5535e904f5fde7c710937597d677685b0430a377d18d45a3ff5b43",
+      "public_key": "BnpYYALYIbXBFrXhPqM24Zq/Vd5oN2GRTazZUVWmnD8=",
+      "value": "BE0APs4NlTe31bX2ZFqrJ1vrZH4drcmEqDt0Seq18r0QzxMODfUAlR7GRUob+rCQwqKpdzjX4J7U0nzUXkERCA=="
+    }
+  },
+  "timestamp_token": {
+    "payload": {
+      "digest": "sha256:70adaab29ad914fff3f9bd505132d0cd49deae36dcb60396346ad601064b69dc",
+      "endorsement": {
+        "payload": {
+          "issuer_status": "active",
+          "profile": "ecr-key-endorsement/0.2",
+          "root": "root:municipal-tsa-root",
+          "root_key_id": "sha256:d8685def003e4bd9f669f3bd6e77de3ec4878be98fc437cb7b25606b44b53634",
+          "subject": "tsa:municipal-tsa",
+          "subject_key_id": "sha256:fd5955f9e114bbc1ba0c1141b9e2e8bb76c8f903a0784b1fd7842d3f397c9824",
+          "subject_public_key": "t6VkcWl7iKrxcox49hF4/pOcM3Wfy0umOy8R5aj18bg=",
+          "valid_from": "2026-01-01T00:00:00Z",
+          "valid_until": "2027-01-01T00:00:00Z"
+        },
+        "signature": {
+          "alg": "Ed25519",
+          "canon": "RFC8785",
+          "key_id": "sha256:d8685def003e4bd9f669f3bd6e77de3ec4878be98fc437cb7b25606b44b53634",
+          "public_key": "N+VuhZD+g4sQswWZCH3TRH2c/JIgMh8rkJOqjEHdHeM=",
+          "value": "uxFU1j0E2hBaw7pG1pXX1RKMe8W8GjqcJbmglhO0Rl8SJgj+UR97/Yv3Bw02PlzAJb6cZdnzVWC9d6NhkfxvAA=="
+        }
+      },
+      "profile": "ecr-timestamp/0.2",
+      "root": "root:municipal-tsa-root",
+      "time": "2026-05-27T11:14:22Z",
+      "tsa": "tsa:municipal-tsa"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "canon": "RFC8785",
+      "key_id": "sha256:fd5955f9e114bbc1ba0c1141b9e2e8bb76c8f903a0784b1fd7842d3f397c9824",
+      "public_key": "t6VkcWl7iKrxcox49hF4/pOcM3Wfy0umOy8R5aj18bg=",
+      "value": "peJG9xLFMKbqjOjM/V6Da7Zty1+wJ8zy5zyMKvi+3OoE9zw0ysw2cNpZr0yDl5aiyO1M9f/ubRm+e1YrZdDfDg=="
+    }
+  }
+}

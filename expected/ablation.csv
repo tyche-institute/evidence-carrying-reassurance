@@ -1,0 +1,8 @@
+family,codes,description,policy_rejected_packets,packets_failing_a_rule_of_the_family,accepted_if_family_removed,accepted_if_family_removed_ids
+F1_verifier_profile,R01+R02,verifier profile named and matching,28,2,2,C14_verifier_profile_mismatch;P21_missing_verifier_profile
+F2_roots_and_brokers,R03+R04+R05+R06+R07+R08,"accepted roots per action class, root conflicts, broker registration and alias injectivity",28,9,9,C02_observed_exchange_policy_reject;C18_broker_root_conflict_after_carrier_success;E03_brokered_untrusted_root;E07_broker_alias_confusion;E08_cross_root_conflict;P03_valid_signature_untrusted_issuer;P09_conflicting_roots;P18_broker_cross_root_alias;P23_broker_only_attestation
+F3_status_and_delegation,R09+R10+R11+R12+R13+R14,"status source, status age, revocation, suspension, validity interval",28,7,7,E04_stale_delegation;E09_missing_status_source;P04_stale_delegation;P05_revoked_delegation;P06_suspended_delegation;P10_stale_status_source;P22_wrong_status_source
+F4_scope_and_co_approval,R15+R16,action class inside the delegation's scope; co-approval where the class requires it,28,3,3,E05_wrong_action_class;P07_wrong_action_class;P24_dual_control_required
+F5_time,R17+R18+R19+R20,"timestamp root, clock skew, binding age, freshness window",28,7,7,C08_clock_skew_outside;C15_replay_old_carrier_event;E10_expired_timestamp;E12_replayed_carrier_binding;P13_replay_outside_window;P15_clock_skew_outside_window;P16_timestamp_root_mismatch
+F6_runtime_profile,R21,"model version, tool profile and prompt profile in the allowed set",28,0,0,
+any_single_family,,rejections that rest on one family only (removing it accepts the packet),28,28,28,caught by two families: none

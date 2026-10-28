@@ -1,0 +1,85 @@
+{
+  "accepted": false,
+  "action_class": null,
+  "appraised_at": "2026-05-27T11:16:19Z",
+  "case_id": "C17_carrier_only_no_agent_evidence",
+  "checks": {
+    "binding": [
+      {
+        "check": "B01_NO_CARRIER_RECORD",
+        "detail": "carrier record accepted",
+        "result": "pass"
+      },
+      {
+        "check": "B02_NO_EVIDENCE",
+        "detail": "",
+        "result": "fail"
+      }
+    ],
+    "carrier": [
+      {
+        "check": "K01_CARRIER_RECORD_MISSING",
+        "detail": "carrier record present",
+        "result": "pass"
+      },
+      {
+        "check": "K02_CARRIER_REJECTED",
+        "detail": "carrier status accepted",
+        "result": "pass"
+      },
+      {
+        "check": "K03_CARRIER_CONFIG_MISMATCH",
+        "detail": "DEV DEV/COM/4321/TestClient -> DEV/COM/1234/TestService/mock1",
+        "result": "pass"
+      },
+      {
+        "check": "K04_MESSAGE_LOG_MISSING",
+        "detail": "provider rows [9, 10], consumer rows [4, 5]",
+        "result": "pass"
+      },
+      {
+        "check": "K05_CARRIER_VALIDATION_UNAVAILABLE",
+        "detail": "validation and timestamping chains available",
+        "result": "pass"
+      }
+    ],
+    "evidence": [
+      {
+        "check": "V01_EVIDENCE_MISSING",
+        "detail": "",
+        "result": "fail"
+      }
+    ],
+    "policy": [
+      {
+        "check": "R00_UPSTREAM_PREDICATE_FAILED",
+        "detail": "",
+        "result": "fail"
+      }
+    ]
+  },
+  "depends_on": {
+    "carrier_config": "sha256:552515653da93e3a6a7e4f278fde4d9bc63ff8a78c99da3fe0ab9b41e7a7c7b3",
+    "policy_parameters": "sha256:0a0bdcb309c0d0e7113e494ddc9c7dfd57296d5e2494166cdebd25f03df7e146",
+    "runtime_profile": "sha256:2ce4faace792bfd4550e4287169b45554f791d5f57360f9f5f16ef94c4379e82",
+    "status": "sha256:5eeebb220c9b87af2661810947a87013e96dedc7c943a3f58dac3211a2692091",
+    "trust_anchors": "sha256:1eaa9482f6ed42b9c3a4b8b0468391429eea873c2f1779787b82ea4f38666f67"
+  },
+  "first_failure_layer": "binding",
+  "fixture": "fixtures/carrier-evidence-matrix/C17_carrier_only_no_agent_evidence.json",
+  "fixture_sha256": "0db4ccd09dae30ee1a6ecacf04cc2fa14182300a6f1e590b3690d62c12693dc2",
+  "hold_reason": null,
+  "policy_id": "rp-policy:municipal-soc/0.2",
+  "predicates": {
+    "binding_ok": false,
+    "carrier_ok": true,
+    "evidence_ok": false,
+    "policy_ok": false
+  },
+  "presented_at": "2026-05-27T11:16:19Z",
+  "reason": "nothing to bind: no receipt or envelope accompanies the carrier record",
+  "reason_code": "B02_NO_EVIDENCE",
+  "receipt_id": null,
+  "verdict": "rejected",
+  "verifier_profile": "ecr-verifier/0.2"
+}

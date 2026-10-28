@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this artifact, cite the article and this repository."
+title: "Evidence-carrying re-assurance: reference verifier and evaluation artifact"
+version: 0.3.1
+date-released: 2026-10-28
+license: MIT
+repository-code: "https://github.com/tyche-institute/evidence-carrying-reassurance"
+authors:
+  - family-names: Sokolov
+    given-names: Anton
+    orcid: "https://orcid.org/0000-0003-2452-7096"
+    affiliation: "Tyche Institute, Tallinn, Estonia"
+keywords:
+  - security assurance
+  - agentic AI
+  - remote attestation
+  - X-Road
+  - re-assurance

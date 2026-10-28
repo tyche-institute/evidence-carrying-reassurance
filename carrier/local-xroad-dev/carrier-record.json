@@ -1,0 +1,37 @@
+{
+  "carrier": "x-road",
+  "client": "DEV/COM/4321/TestClient",
+  "fault": null,
+  "http_status": 200,
+  "instance": "DEV",
+  "message_id": "tyche-real-run-20260527T111419Z",
+  "message_log": {
+    "consumer_rows": [
+      4,
+      5
+    ],
+    "consumer_security_server": "DEV:COM:4321:SS1",
+    "provider_rows": [
+      9,
+      10
+    ],
+    "provider_security_server": "DEV:COM:1234:SS0",
+    "ss0_logrecord_csv_sha256": "168cd2267b4f82c6b5598573eca51d3e8d051fe9586df65aab7ba0d1b14a364a",
+    "ss1_logrecord_csv_sha256": "973b7af0d881352fe6045f583cc60afd9826742635a02786abdef82f7aaefba5"
+  },
+  "observed_at": "2026-05-27T11:14:19Z",
+  "request_hash": "g/UXFVSL4VZq6dO+F/FhlYaJP/JWHT/+diOge5vGHJKF016NrhKs8G/xu1KIxK2IxRRFgK1yhn5jovsRyyP7MA==",
+  "request_id": "679b103a-b24c-4076-b49d-15cf2f3a71e6",
+  "request_payload_sha256": "822d59bc55cfc3d85555b792ccd6036efa55854b5be71408f078c2e0e4cdac6b",
+  "response_body_sha256": "2c7713a2b73cc7821c0e9a9b227565161586e7bad09b19f82c21ff53d65192e8",
+  "response_headers_sha256": "2645f8434cafe95aef5104eb03eb41b88ceb58022be7940da02cf6a2967dd4b4",
+  "service": "DEV/COM/1234/TestService/mock1",
+  "source": {
+    "artifact": "carrier/local-xroad-dev/message-binding.json",
+    "basis": "observed-local-dev-stack",
+    "run_date": "2026-05-27",
+    "sha256": "2a37ffb62cbc17a38997814ba9c06054abc157c62cdcfe409e23183993e45ba3",
+    "xroad_commit": "3c37ca1eced1f0ca46d0171ee0703649db254081"
+  },
+  "status": "accepted"
+}

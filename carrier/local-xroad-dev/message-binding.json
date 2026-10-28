@@ -1,0 +1,46 @@
+{
+  "verdict": "REAL-XROAD-CLEAR",
+  "run_date": "2026-05-27",
+  "xroad_source": {
+    "repository": "https://github.com/nordic-institute/X-Road",
+    "commit": "3c37ca1eced1f0ca46d0171ee0703649db254081",
+    "commit_date": "2026-05-27T12:37:26+03:00"
+  },
+  "xroad_images": {
+    "central_server": "ghcr.io/nordic-institute/xrddev-central-server@sha256:1041e967e39febb1279c8f81d480de6b18f37bad35001777678b827570e7c66c",
+    "test_ca": "ghcr.io/nordic-institute/xrddev-testca@sha256:018e9f6ea04634ec61a3d44abee9a86d9dc4f6a2508296fd8db95d272c16c0c5",
+    "security_server": "ghcr.io/nordic-institute/xrddev-security-server@sha256:6100f3aa1ad7e7d21511a52cd7d22a71c42b195b24080b2a41b590bca9e68576"
+  },
+  "participants": {
+    "consumer_security_server": "DEV:COM:4321:SS1",
+    "consumer_subsystem": "DEV/COM/4321/TestClient",
+    "provider_security_server": "DEV:COM:1234:SS0",
+    "provider_subsystem": "DEV/COM/1234/TestService",
+    "service": "DEV/COM/1234/TestService/mock1"
+  },
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:18081/r1/DEV/COM/1234/TestService/mock1",
+    "x_road_client": "DEV/COM/4321/TestClient",
+    "x_road_id": "tyche-real-run-20260527T111419Z",
+    "request_payload_sha256": "822d59bc55cfc3d85555b792ccd6036efa55854b5be71408f078c2e0e4cdac6b",
+    "evidence_carriage_mode": "hash-metadata",
+    "evidence_package_sha256": "f144e683b73ff91caf20537c5e86266940ae32f12e5fb703ff17013584ce96d0",
+    "synthetic_lab_scenario": "S02"
+  },
+  "response": {
+    "http_status": 200,
+    "x_road_id": "tyche-real-run-20260527T111419Z",
+    "x_road_request_id": "679b103a-b24c-4076-b49d-15cf2f3a71e6",
+    "x_road_request_hash": "g/UXFVSL4VZq6dO+F/FhlYaJP/JWHT/+diOge5vGHJKF016NrhKs8G/xu1KIxK2IxRRFgK1yhn5jovsRyyP7MA==",
+    "response_headers_sha256": "2645f8434cafe95aef5104eb03eb41b88ceb58022be7940da02cf6a2967dd4b4",
+    "response_body_sha256": "2c7713a2b73cc7821c0e9a9b227565161586e7bad09b19f82c21ff53d65192e8",
+    "echoed_evidence_package_sha256": "f144e683b73ff91caf20537c5e86266940ae32f12e5fb703ff17013584ce96d0"
+  },
+  "message_log_evidence": {
+    "ss0_logrecord_csv_sha256": "168cd2267b4f82c6b5598573eca51d3e8d051fe9586df65aab7ba0d1b14a364a",
+    "ss1_logrecord_csv_sha256": "973b7af0d881352fe6045f583cc60afd9826742635a02786abdef82f7aaefba5",
+    "ss0_rows": "messagelog.logrecord ids 9 and 10 carry queryid tyche-real-run-20260527T111419Z and xrequestid 679b103a-b24c-4076-b49d-15cf2f3a71e6",
+    "ss1_rows": "messagelog.logrecord ids 4 and 5 carry queryid tyche-real-run-20260527T111419Z and xrequestid 679b103a-b24c-4076-b49d-15cf2f3a71e6"
+  }
+}

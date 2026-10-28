@@ -1,0 +1,1227 @@
+{
+  "cases": [
+    {
+      "case_id": "P01_direct_trusted_issuer",
+      "claim_strength": "simulation",
+      "description": "Direct issuer under an accepted root; append-only enrichment within delegated scope.",
+      "deviations_from_P01": {},
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P01_direct_trusted_issuer.json",
+      "intended_code": null,
+      "intended_layer": "none",
+      "threat_id": "T0"
+    },
+    {
+      "case_id": "P02_brokered_trusted_issuer",
+      "claim_strength": "simulation",
+      "description": "Broker normalises a trusted issuer without becoming the root of truth.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P02_brokered_trusted_issuer.json",
+      "intended_code": null,
+      "intended_layer": "none",
+      "threat_id": "T0"
+    },
+    {
+      "case_id": "P03_valid_signature_untrusted_issuer",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Signature verifies; issuer root is outside relying-party policy.",
+      "deviations_from_P01": {
+        "issuer": "issuer-vendor"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P03_valid_signature_untrusted_issuer.json",
+      "intended_code": "R04_ROOT_NOT_ACCEPTED",
+      "intended_layer": "policy",
+      "threat_id": "T2"
+    },
+    {
+      "case_id": "P04_stale_delegation",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Delegation expired before the carrier event time.",
+      "deviations_from_P01": {
+        "delegation": "del-005"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P04_stale_delegation.json",
+      "intended_code": "R14_DELEGATION_NOT_VALID_AT_EVENT",
+      "intended_layer": "policy",
+      "threat_id": "T4"
+    },
+    {
+      "case_id": "P05_revoked_delegation",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Status source marks the delegation revoked.",
+      "deviations_from_P01": {
+        "delegation": "del-003"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P05_revoked_delegation.json",
+      "intended_code": "R12_DELEGATION_REVOKED",
+      "intended_layer": "policy",
+      "threat_id": "T4"
+    },
+    {
+      "case_id": "P06_suspended_delegation",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Status source marks the delegation suspended.",
+      "deviations_from_P01": {
+        "delegation": "del-004"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P06_suspended_delegation.json",
+      "intended_code": "R13_DELEGATION_SUSPENDED",
+      "intended_layer": "policy",
+      "threat_id": "T4"
+    },
+    {
+      "case_id": "P07_wrong_action_class",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Receipt scoped to read and enrich; the action mutates the case file, with a listed co-approver present, so the scope rule is the only failing rule.",
+      "deviations_from_P01": {
+        "action": "mutate",
+        "co_approval": true
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P07_wrong_action_class.json",
+      "intended_code": "R15_ACTION_OUTSIDE_SCOPE",
+      "intended_layer": "policy",
+      "threat_id": "T5"
+    },
+    {
+      "case_id": "P08_broker_metadata_tamper",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Broker's signed digest no longer matches the attached receipt.",
+      "deviations_from_P01": {
+        "broker_digest_of_other": true,
+        "brokered": true,
+        "delegation": "del-002"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P08_broker_metadata_tamper.json",
+      "intended_code": "V07_BROKER_DIGEST_MISMATCH",
+      "intended_layer": "evidence",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "P09_conflicting_roots",
+      "claim_strength": "simulation",
+      "description": "Two accepted roots assert incompatible issuer status; policy fails closed.",
+      "deviations_from_P01": {
+        "endorsing_roots": [
+          [
+            "root-municipal-agent-ca",
+            "active"
+          ],
+          [
+            "root-partner-ca",
+            "revoked"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P09_conflicting_roots.json",
+      "intended_code": "R06_ROOT_CONFLICT",
+      "intended_layer": "policy",
+      "threat_id": "T2"
+    },
+    {
+      "case_id": "P10_stale_status_source",
+      "claim_strength": "simulation",
+      "description": "Status list older than the relying party's maximum status age.",
+      "deviations_from_P01": {
+        "status": "stale",
+        "status_issued_at": "2026-05-27T08:00:00Z"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P10_stale_status_source.json",
+      "intended_code": "R11_STATUS_STALE",
+      "intended_layer": "policy",
+      "threat_id": "T4"
+    },
+    {
+      "case_id": "P11_carrier_request_id_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Receipt names a different X-Road message id than the carrier record.",
+      "deviations_from_P01": {
+        "receipt_carrier_overrides": {
+          "message_id": "tyche-real-run-20260527T093000Z",
+          "request_id": "0d2f6c1e-5b1a-4c3e-9a7f-2e8d4b6c1a90"
+        }
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P11_carrier_request_id_mismatch.json",
+      "intended_code": "B03_MESSAGE_ID_MISMATCH",
+      "intended_layer": "binding",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "P12_response_payload_hash_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Response digest in the receipt differs from the carrier's response body digest.",
+      "deviations_from_P01": {
+        "receipt_carrier_overrides": {
+          "response_digest": "6f0c3a9e5d2b7c1f4e8a0b3d6c9f2e5a8b1d4c7f0a3e6b9d2c5f8a1b4e7d0c3f"
+        }
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P12_response_payload_hash_mismatch.json",
+      "intended_code": "B05_RESPONSE_DIGEST_MISMATCH",
+      "intended_layer": "binding",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "P13_replay_outside_window",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Receipt binds to a carrier event older than the binding age limit (replayed carrier event).",
+      "deviations_from_P01": {
+        "issued_at": "2026-05-27T12:30:00Z",
+        "presented_at": "2026-05-27T12:31:00Z",
+        "status_issued_at": "2026-05-27T12:00:00Z",
+        "tsa_time": "2026-05-27T12:30:01Z"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P13_replay_outside_window.json",
+      "intended_code": "R19_BINDING_AGE_EXCEEDED",
+      "intended_layer": "policy",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "P14_clock_skew_inside_window",
+      "claim_strength": "simulation",
+      "description": "Issuer and timestamp-authority clocks differ by 20 s, inside the 30 s tolerance.",
+      "deviations_from_P01": {
+        "tsa_time": "2026-05-27T11:14:41Z"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P14_clock_skew_inside_window.json",
+      "intended_code": null,
+      "intended_layer": "none",
+      "threat_id": "T0"
+    },
+    {
+      "case_id": "P15_clock_skew_outside_window",
+      "claim_strength": "simulation",
+      "description": "Issuer and timestamp-authority clocks differ by 120 s, outside the 30 s tolerance.",
+      "deviations_from_P01": {
+        "presented_at": "2026-05-27T11:17:00Z",
+        "tsa_time": "2026-05-27T11:16:21Z"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P15_clock_skew_outside_window.json",
+      "intended_code": "R18_CLOCK_SKEW_EXCEEDED",
+      "intended_layer": "policy",
+      "threat_id": "T7"
+    },
+    {
+      "case_id": "P16_timestamp_root_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Timestamp verifies under a root the policy does not accept for the action.",
+      "deviations_from_P01": {
+        "tsa": "tsa-vendor"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P16_timestamp_root_mismatch.json",
+      "intended_code": "R17_TIMESTAMP_ROOT_NOT_ACCEPTED",
+      "intended_layer": "policy",
+      "threat_id": "T2"
+    },
+    {
+      "case_id": "P17_missing_agent_subject",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Receipt lacks the mandatory agent subject.",
+      "deviations_from_P01": {
+        "subject": false
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P17_missing_agent_subject.json",
+      "intended_code": "V03_REQUIRED_FIELD_MISSING",
+      "intended_layer": "evidence",
+      "threat_id": "T3"
+    },
+    {
+      "case_id": "P18_broker_cross_root_alias",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Broker maps two issuer identities under different roots to one alias.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "mapping": [
+          {
+            "alias": "alias:soc",
+            "issuer": "issuer:soc-agent-platform",
+            "root": "root:municipal-agent-ca"
+          },
+          {
+            "alias": "alias:soc",
+            "issuer": "issuer:partner-agent-platform",
+            "root": "root:partner-ca"
+          }
+        ]
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P18_broker_cross_root_alias.json",
+      "intended_code": "R08_BROKER_ALIAS_NOT_INJECTIVE",
+      "intended_layer": "policy",
+      "threat_id": "T2"
+    },
+    {
+      "case_id": "P19_carrier_rejected_member_auth",
+      "claim_strength": "simulation",
+      "description": "Carrier rejects the client subsystem's access before any evidence appraisal.",
+      "deviations_from_P01": {
+        "carrier": "rejected"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P19_carrier_rejected_member_auth.json",
+      "intended_code": "K02_CARRIER_REJECTED",
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "case_id": "P20_valid_receipt_carrier_unknown",
+      "claim_strength": "simulation",
+      "description": "Receipt verifies offline; no carrier record accepted by this relying party.",
+      "deviations_from_P01": {
+        "carrier": null
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P20_valid_receipt_carrier_unknown.json",
+      "intended_code": "K01_CARRIER_RECORD_MISSING",
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "case_id": "P21_missing_verifier_profile",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Receipt omits the verifier profile the policy requires.",
+      "deviations_from_P01": {
+        "verifier_profile": null
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P21_missing_verifier_profile.json",
+      "intended_code": "R01_VERIFIER_PROFILE_MISSING",
+      "intended_layer": "policy",
+      "threat_id": "T7"
+    },
+    {
+      "case_id": "P22_wrong_status_source",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Status list signed by a source other than the one policy names.",
+      "deviations_from_P01": {
+        "status": "vendor"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P22_wrong_status_source.json",
+      "intended_code": "R10_STATUS_SOURCE_NOT_ACCEPTED",
+      "intended_layer": "policy",
+      "threat_id": "T4"
+    },
+    {
+      "case_id": "P23_broker_only_attestation",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Only the broker asserts a root; the issuer carries none.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "issuer": "issuer-unanchored"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P23_broker_only_attestation.json",
+      "intended_code": "R03_ISSUER_ROOT_ABSENT",
+      "intended_layer": "policy",
+      "threat_id": "T3"
+    },
+    {
+      "case_id": "P24_dual_control_required",
+      "claim_strength": "simulation",
+      "description": "Mutating action within delegated scope but without the required co-approval.",
+      "deviations_from_P01": {
+        "action": "mutate",
+        "delegation": "del-006"
+      },
+      "executed": true,
+      "family": "policy-cases",
+      "fixture": "fixtures/policy-cases/P24_dual_control_required.json",
+      "intended_code": "R16_CO_APPROVAL_REQUIRED",
+      "intended_layer": "policy",
+      "threat_id": "T5"
+    },
+    {
+      "case_id": "E01_direct_trusted_issuer",
+      "claim_strength": "simulation",
+      "description": "Direct trusted issuer accepted (control).",
+      "deviations_from_P01": {},
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E01_direct_trusted_issuer.json",
+      "intended_code": null,
+      "intended_layer": "none",
+      "threat_id": "T0"
+    },
+    {
+      "case_id": "E02_brokered_trusted_issuer",
+      "claim_strength": "simulation",
+      "description": "Brokered trusted issuer accepted (control).",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002"
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E02_brokered_trusted_issuer.json",
+      "intended_code": null,
+      "intended_layer": "none",
+      "threat_id": "T0"
+    },
+    {
+      "case_id": "E03_brokered_untrusted_root",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Valid brokered receipt under a root outside policy.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "issuer": "issuer-vendor"
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E03_brokered_untrusted_root.json",
+      "intended_code": "R04_ROOT_NOT_ACCEPTED",
+      "intended_layer": "policy",
+      "threat_id": "T2"
+    },
+    {
+      "case_id": "E04_stale_delegation",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Brokered receipt with an expired delegation.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-005"
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E04_stale_delegation.json",
+      "intended_code": "R14_DELEGATION_NOT_VALID_AT_EVENT",
+      "intended_layer": "policy",
+      "threat_id": "T4"
+    },
+    {
+      "case_id": "E05_wrong_action_class",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Brokered receipt scoped to enrichment, used for a mutation.",
+      "deviations_from_P01": {
+        "action": "mutate",
+        "brokered": true,
+        "delegation": "del-002"
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E05_wrong_action_class.json",
+      "intended_code": "R15_ACTION_OUTSIDE_SCOPE",
+      "intended_layer": "policy",
+      "threat_id": "T5"
+    },
+    {
+      "case_id": "E06_message_id_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Brokered receipt bound to a different carrier message id.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "receipt_carrier_overrides": {
+          "message_id": "tyche-real-run-20260527T093000Z",
+          "request_id": "0d2f6c1e-5b1a-4c3e-9a7f-2e8d4b6c1a90"
+        }
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E06_message_id_mismatch.json",
+      "intended_code": "B03_MESSAGE_ID_MISMATCH",
+      "intended_layer": "binding",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "E07_broker_alias_confusion",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Broker normalises two issuers under different roots to one alias.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "mapping": [
+          {
+            "alias": "alias:soc",
+            "issuer": "issuer:soc-agent-platform",
+            "root": "root:municipal-agent-ca"
+          },
+          {
+            "alias": "alias:soc",
+            "issuer": "issuer:partner-agent-platform",
+            "root": "root:partner-ca"
+          }
+        ]
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E07_broker_alias_confusion.json",
+      "intended_code": "R08_BROKER_ALIAS_NOT_INJECTIVE",
+      "intended_layer": "policy",
+      "threat_id": "T2"
+    },
+    {
+      "case_id": "E08_cross_root_conflict",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Brokered receipt whose accepted roots disagree about issuer status.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "endorsing_roots": [
+          [
+            "root-municipal-agent-ca",
+            "active"
+          ],
+          [
+            "root-partner-ca",
+            "revoked"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E08_cross_root_conflict.json",
+      "intended_code": "R06_ROOT_CONFLICT",
+      "intended_layer": "policy",
+      "threat_id": "T2"
+    },
+    {
+      "case_id": "E09_missing_status_source",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Brokered receipt without the status list the delegation names.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "status": null
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E09_missing_status_source.json",
+      "intended_code": "R09_STATUS_SOURCE_MISSING",
+      "intended_layer": "policy",
+      "threat_id": "T4"
+    },
+    {
+      "case_id": "E10_expired_timestamp",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Brokered receipt presented a day after its timestamp.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "presented_at": "2026-05-28T11:14:22Z",
+        "status_issued_at": "2026-05-28T11:00:00Z"
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E10_expired_timestamp.json",
+      "intended_code": "R20_TIMESTAMP_OUTSIDE_WINDOW",
+      "intended_layer": "policy",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "E11_payload_hash_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Brokered receipt whose response digest differs from the carrier's.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "receipt_carrier_overrides": {
+          "response_digest": "6f0c3a9e5d2b7c1f4e8a0b3d6c9f2e5a8b1d4c7f0a3e6b9d2c5f8a1b4e7d0c3f"
+        }
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E11_payload_hash_mismatch.json",
+      "intended_code": "B05_RESPONSE_DIGEST_MISMATCH",
+      "intended_layer": "binding",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "E12_replayed_carrier_binding",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Brokered receipt bound to a carrier event older than the binding age limit.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "issued_at": "2026-05-27T12:30:00Z",
+        "presented_at": "2026-05-27T12:31:00Z",
+        "status_issued_at": "2026-05-27T12:00:00Z",
+        "tsa_time": "2026-05-27T12:30:01Z"
+      },
+      "executed": true,
+      "family": "brokered-evidence-fixtures",
+      "fixture": "fixtures/brokered-evidence-fixtures/E12_replayed_carrier_binding.json",
+      "intended_code": "R19_BINDING_AGE_EXCEEDED",
+      "intended_layer": "policy",
+      "threat_id": "T1"
+    },
+    {
+      "basis": "observed-local-dev-stack",
+      "case_id": "C01_observed_exchange_valid_binding",
+      "claim_strength": "observed",
+      "description": "Observed local-dev exchange with a matching receipt binding.",
+      "deviations_from_P01": {},
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C01_observed_exchange_valid_binding.json",
+      "intended_code": null,
+      "intended_layer": "none",
+      "threat_id": "T0"
+    },
+    {
+      "basis": "derived-from-observed-artifact",
+      "case_id": "C02_observed_exchange_policy_reject",
+      "claim_strength": "derived",
+      "description": "Same carrier record; issuer root outside policy.",
+      "deviations_from_P01": {
+        "issuer": "issuer-vendor"
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C02_observed_exchange_policy_reject.json",
+      "intended_code": "R04_ROOT_NOT_ACCEPTED",
+      "intended_layer": "policy",
+      "threat_id": "T2"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C03_request_id_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Carrier accepted; receipt names a different message id.",
+      "deviations_from_P01": {
+        "receipt_carrier_overrides": {
+          "message_id": "tyche-real-run-20260527T093000Z",
+          "request_id": "0d2f6c1e-5b1a-4c3e-9a7f-2e8d4b6c1a90"
+        }
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C03_request_id_mismatch.json",
+      "intended_code": "B03_MESSAGE_ID_MISMATCH",
+      "intended_layer": "binding",
+      "threat_id": "T1"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C04_response_hash_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Carrier accepted; response digest in the receipt changed.",
+      "deviations_from_P01": {
+        "receipt_carrier_overrides": {
+          "response_digest": "6f0c3a9e5d2b7c1f4e8a0b3d6c9f2e5a8b1d4c7f0a3e6b9d2c5f8a1b4e7d0c3f"
+        }
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C04_response_hash_mismatch.json",
+      "intended_code": "B05_RESPONSE_DIGEST_MISMATCH",
+      "intended_layer": "binding",
+      "threat_id": "T1"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C05_missing_sidecar_manifest",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Message exists; no evidence object accompanies it.",
+      "deviations_from_P01": {
+        "evidence": null
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C05_missing_sidecar_manifest.json",
+      "intended_code": "B02_NO_EVIDENCE",
+      "intended_layer": "binding",
+      "threat_id": "T3"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C06_broker_transformation_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Broker normalisation changes a field covered by the binding.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "normalized_overrides": {
+          "carrier_message_id": "tyche-real-run-20260527T111419Z-normalized"
+        }
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C06_broker_transformation_mismatch.json",
+      "intended_code": "B06_BROKER_BINDING_ALTERED",
+      "intended_layer": "binding",
+      "threat_id": "T3"
+    },
+    {
+      "basis": "derived-from-observed-artifact",
+      "case_id": "C07_clock_skew_inside",
+      "claim_strength": "derived",
+      "description": "Clock skew 20 s, inside tolerance.",
+      "deviations_from_P01": {
+        "tsa_time": "2026-05-27T11:14:41Z"
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C07_clock_skew_inside.json",
+      "intended_code": null,
+      "intended_layer": "none",
+      "threat_id": "T0"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C08_clock_skew_outside",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Clock skew 120 s, outside tolerance.",
+      "deviations_from_P01": {
+        "presented_at": "2026-05-27T11:17:00Z",
+        "tsa_time": "2026-05-27T11:16:21Z"
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C08_clock_skew_outside.json",
+      "intended_code": "R18_CLOCK_SKEW_EXCEEDED",
+      "intended_layer": "policy",
+      "threat_id": "T7"
+    },
+    {
+      "basis": "future-test-xroad-plan",
+      "case_id": "C09_stale_global_configuration",
+      "claim_strength": "planned",
+      "description": "Security-server global-configuration boundary: planned, not executed.",
+      "executed": false,
+      "family": "carrier-evidence-matrix",
+      "fixture": null,
+      "intended_code": null,
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "basis": "future-test-xroad-plan",
+      "case_id": "C10_member_subsystem_auth_failure",
+      "claim_strength": "planned",
+      "description": "Carrier rejects an unauthorised subsystem: executed as P19 on the local stack's access-rights model; a national test-instance run remains planned.",
+      "executed": false,
+      "family": "carrier-evidence-matrix",
+      "fixture": null,
+      "intended_code": null,
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "basis": "future-test-xroad-plan",
+      "case_id": "C11_certificate_rotation_boundary",
+      "claim_strength": "planned",
+      "description": "Signing/authentication certificate rollover boundary: planned, not executed.",
+      "executed": false,
+      "family": "carrier-evidence-matrix",
+      "fixture": null,
+      "intended_code": null,
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C12_ocsp_outage",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Carrier could not check certificate status; fail closed.",
+      "deviations_from_P01": {
+        "carrier": "validation_unavailable"
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C12_ocsp_outage.json",
+      "intended_code": "K05_CARRIER_VALIDATION_UNAVAILABLE",
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C13_tsa_outage",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Carrier could not timestamp the message log; fail closed.",
+      "deviations_from_P01": {
+        "carrier": "timestamp_unavailable"
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C13_tsa_outage.json",
+      "intended_code": "K05_CARRIER_VALIDATION_UNAVAILABLE",
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C14_verifier_profile_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Receipt names a verifier profile other than the required one.",
+      "deviations_from_P01": {
+        "verifier_profile": "ecr-verifier/0.1"
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C14_verifier_profile_mismatch.json",
+      "intended_code": "R02_VERIFIER_PROFILE_MISMATCH",
+      "intended_layer": "policy",
+      "threat_id": "T7"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C15_replay_old_carrier_event",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Old accepted carrier event replayed outside the binding age limit.",
+      "deviations_from_P01": {
+        "issued_at": "2026-05-27T12:30:00Z",
+        "presented_at": "2026-05-27T12:31:00Z",
+        "status_issued_at": "2026-05-27T12:00:00Z",
+        "tsa_time": "2026-05-27T12:30:01Z"
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C15_replay_old_carrier_event.json",
+      "intended_code": "R19_BINDING_AGE_EXCEEDED",
+      "intended_layer": "policy",
+      "threat_id": "T1"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C16_evidence_only_no_carrier",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Offline receipt without a carrier witness.",
+      "deviations_from_P01": {
+        "carrier": null
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C16_evidence_only_no_carrier.json",
+      "intended_code": "K01_CARRIER_RECORD_MISSING",
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "basis": "derived-from-observed-artifact",
+      "case_id": "C17_carrier_only_no_agent_evidence",
+      "claim_strength": "derived",
+      "description": "Valid X-Road exchange with no agent-authority evidence at all.",
+      "deviations_from_P01": {
+        "evidence": null
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C17_carrier_only_no_agent_evidence.json",
+      "intended_code": "B02_NO_EVIDENCE",
+      "intended_layer": "binding",
+      "threat_id": "T3"
+    },
+    {
+      "basis": "synthetic-negative-control",
+      "case_id": "C18_broker_root_conflict_after_carrier_success",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Carrier says the exchange happened; accepted roots disagree about authority.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "endorsing_roots": [
+          [
+            "root-municipal-agent-ca",
+            "active"
+          ],
+          [
+            "root-partner-ca",
+            "revoked"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "carrier-evidence-matrix",
+      "fixture": "fixtures/carrier-evidence-matrix/C18_broker_root_conflict_after_carrier_success.json",
+      "intended_code": "R06_ROOT_CONFLICT",
+      "intended_layer": "policy",
+      "threat_id": "T2"
+    },
+    {
+      "case_id": "N01_carrier_service_outside_policy",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Carrier accepted the exchange, but the provider service is not in the relying party's accepted set.",
+      "deviations_from_P01": {
+        "carrier_overrides": {
+          "service": "DEV/COM/1234/OtherService/mock1"
+        }
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N01_carrier_service_outside_policy.json",
+      "intended_code": "K03_CARRIER_CONFIG_MISMATCH",
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "case_id": "N02_message_log_rows_absent",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Carrier accepted the exchange; the record carries no message-log rows for either side.",
+      "deviations_from_P01": {
+        "carrier_overrides": {
+          "message_log.consumer_rows": [],
+          "message_log.provider_rows": []
+        }
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N02_message_log_rows_absent.json",
+      "intended_code": "K04_MESSAGE_LOG_MISSING",
+      "intended_layer": "carrier",
+      "threat_id": "T6"
+    },
+    {
+      "case_id": "N03_request_digest_mismatch",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Receipt's request digest differs from the carrier record's request payload digest.",
+      "deviations_from_P01": {
+        "receipt_carrier_overrides": {
+          "request_digest": "6f0c3a9e5d2b7c1f4e8a0b3d6c9f2e5a8b1d4c7f0a3e6b9d2c5f8a1b4e7d0c3f"
+        }
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N03_request_digest_mismatch.json",
+      "intended_code": "B04_REQUEST_DIGEST_MISMATCH",
+      "intended_layer": "binding",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "N04_unknown_receipt_profile",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Receipt declares a profile this verifier does not implement.",
+      "deviations_from_P01": {
+        "tamper": [
+          [
+            "evidence.payload.profile",
+            "ecr-receipt/0.1"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N04_unknown_receipt_profile.json",
+      "intended_code": "V02_PROFILE_UNKNOWN",
+      "intended_layer": "evidence",
+      "threat_id": "T7"
+    },
+    {
+      "case_id": "N05_receipt_payload_edited",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Receipt payload edited after signing (action summary).",
+      "deviations_from_P01": {
+        "tamper": [
+          [
+            "evidence.payload.action.summary",
+            "append an enrichment note (edited after signing)"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N05_receipt_payload_edited.json",
+      "intended_code": "V04_SIGNATURE_INVALID",
+      "intended_layer": "evidence",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "N06_endorsement_signature_invalid",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Issuer carries a root endorsement whose payload was altered; the root signature over it no longer verifies.",
+      "deviations_from_P01": {
+        "endorsement_tamper": [
+          [
+            "0.payload.valid_until",
+            "2028-01-01T00:00:00Z"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N06_endorsement_signature_invalid.json",
+      "intended_code": "V05_ENDORSEMENT_INVALID",
+      "intended_layer": "evidence",
+      "threat_id": "T2"
+    },
+    {
+      "case_id": "N07_broker_signature_invalid",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Broker envelope payload edited after signing (mapping id).",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "tamper": [
+          [
+            "evidence.payload.mapping_id",
+            "map-2026-06"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N07_broker_signature_invalid.json",
+      "intended_code": "V06_BROKER_SIGNATURE_INVALID",
+      "intended_layer": "evidence",
+      "threat_id": "T3"
+    },
+    {
+      "case_id": "N08_timestamp_token_edited",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Timestamp token payload edited after signing (time).",
+      "deviations_from_P01": {
+        "tamper": [
+          [
+            "timestamp_token.payload.time",
+            "2026-05-27T11:14:23Z"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N08_timestamp_token_edited.json",
+      "intended_code": "V08_TIMESTAMP_TOKEN_INVALID",
+      "intended_layer": "evidence",
+      "threat_id": "T1"
+    },
+    {
+      "case_id": "N09_status_list_edited",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Status list payload edited after signing (issue time).",
+      "deviations_from_P01": {
+        "tamper": [
+          [
+            "status_list.payload.issued_at",
+            "2026-05-27T11:10:00Z"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N09_status_list_edited.json",
+      "intended_code": "V09_STATUS_LIST_INVALID",
+      "intended_layer": "evidence",
+      "threat_id": "T4"
+    },
+    {
+      "case_id": "N10_co_approval_edited",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Co-approval payload edited after signing (approval time).",
+      "deviations_from_P01": {
+        "action": "mutate",
+        "co_approval": true,
+        "delegation": "del-006",
+        "tamper": [
+          [
+            "co_approval.payload.approved_at",
+            "2026-05-27T11:14:30Z"
+          ]
+        ]
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N10_co_approval_edited.json",
+      "intended_code": "V10_CO_APPROVAL_INVALID",
+      "intended_layer": "evidence",
+      "threat_id": "T5"
+    },
+    {
+      "case_id": "N11_root_not_accepted_for_mutation",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Partner root is accepted for read and enrich only; the action mutates the case file with scope and co-approval in order.",
+      "deviations_from_P01": {
+        "action": "mutate",
+        "co_approval": true,
+        "delegation": "del-006",
+        "issuer": "issuer-partner"
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N11_root_not_accepted_for_mutation.json",
+      "intended_code": "R05_ROOT_NOT_ACCEPTED_FOR_ACTION",
+      "intended_layer": "policy",
+      "threat_id": "T5"
+    },
+    {
+      "case_id": "N12_broker_mapping_not_registered",
+      "claim_strength": "synthetic-negative-control",
+      "description": "Broker signs with its registered key under a mapping id the relying party has not registered.",
+      "deviations_from_P01": {
+        "brokered": true,
+        "delegation": "del-002",
+        "mapping_id": "map-2026-01"
+      },
+      "executed": true,
+      "family": "coverage-controls",
+      "fixture": "fixtures/coverage-controls/N12_broker_mapping_not_registered.json",
+      "intended_code": "R07_BROKER_NOT_ACCEPTED",
+      "intended_layer": "policy",
+      "threat_id": "T3"
+    },
+    {
+      "case_id": "S01_mutate_with_co_approval",
+      "claim_strength": "simulation",
+      "description": "Mutating action within scope with a listed co-approver; accepted unless a claim is pending.",
+      "deviations_from_P01": {
+        "action": "mutate",
+        "carrier": "shifted",
+        "carrier_observed_at": "2026-06-17T07:28:00Z",
+        "co_approval": true,
+        "delegation": "del-006",
+        "issued_at": "2026-06-17T07:28:02Z",
+        "presented_at": "2026-06-17T07:30:00Z",
+        "status_issued_at": "2026-06-17T07:00:00Z",
+        "tsa_time": "2026-06-17T07:28:03Z"
+      },
+      "executed": true,
+      "family": "scenario",
+      "fixture": "fixtures/scenario/S01_mutate_with_co_approval.json",
+      "intended_code": "H01_HOLD_PENDING_REASSESSMENT",
+      "intended_layer": "none",
+      "threat_id": "T8"
+    },
+    {
+      "case_id": "S02_read_with_new_model_version",
+      "claim_strength": "simulation",
+      "description": "Read action by the upgraded model before policy admits the new profile.",
+      "deviations_from_P01": {
+        "action": "read",
+        "carrier": "shifted",
+        "carrier_observed_at": "2026-06-17T07:33:00Z",
+        "issued_at": "2026-06-17T07:33:02Z",
+        "model_version": "ir-enrichment-model/2026.07",
+        "presented_at": "2026-06-17T07:35:00Z",
+        "status_issued_at": "2026-06-17T07:00:00Z",
+        "tsa_time": "2026-06-17T07:33:03Z"
+      },
+      "executed": true,
+      "family": "scenario",
+      "fixture": "fixtures/scenario/S02_read_with_new_model_version.json",
+      "intended_code": "R21_RUNTIME_PROFILE_NOT_ALLOWED",
+      "intended_layer": "policy",
+      "threat_id": "T8"
+    },
+    {
+      "case_id": "S03_mutate_outside_scope_with_co_approval",
+      "claim_strength": "simulation",
+      "description": "Escalation attempt: mutation under a read/enrich delegation, co-approval present.",
+      "deviations_from_P01": {
+        "action": "mutate",
+        "carrier": "shifted",
+        "carrier_observed_at": "2026-06-20T09:48:00Z",
+        "co_approval": true,
+        "issued_at": "2026-06-20T09:48:02Z",
+        "presented_at": "2026-06-20T09:50:00Z",
+        "status_issued_at": "2026-06-20T09:00:00Z",
+        "tsa_time": "2026-06-20T09:48:03Z"
+      },
+      "executed": true,
+      "family": "scenario",
+      "fixture": "fixtures/scenario/S03_mutate_outside_scope_with_co_approval.json",
+      "intended_code": "R15_ACTION_OUTSIDE_SCOPE",
+      "intended_layer": "policy",
+      "threat_id": "T5"
+    },
+    {
+      "case_id": "S04_read_with_new_model_version_after_policy_update",
+      "claim_strength": "simulation",
+      "description": "The S02 action repeated after the policy admits the new profile.",
+      "deviations_from_P01": {
+        "action": "read",
+        "carrier": "shifted",
+        "carrier_observed_at": "2026-06-17T16:03:00Z",
+        "issued_at": "2026-06-17T16:03:02Z",
+        "model_version": "ir-enrichment-model/2026.07",
+        "presented_at": "2026-06-17T16:05:00Z",
+        "status_issued_at": "2026-06-17T15:30:00Z",
+        "tsa_time": "2026-06-17T16:03:03Z"
+      },
+      "executed": true,
+      "family": "scenario",
+      "fixture": "fixtures/scenario/S04_read_with_new_model_version_after_policy_update.json",
+      "intended_code": null,
+      "intended_layer": "none",
+      "threat_id": "T0"
+    },
+    {
+      "case_id": "S05_mutate_during_audit",
+      "claim_strength": "simulation",
+      "description": "Mutating action with co-approval by the admitted model, presented while an audit challenge holds every claim pending.",
+      "deviations_from_P01": {
+        "action": "mutate",
+        "carrier": "shifted",
+        "carrier_observed_at": "2026-06-30T09:58:00Z",
+        "co_approval": true,
+        "delegation": "del-006",
+        "issued_at": "2026-06-30T09:58:02Z",
+        "model_version": "ir-enrichment-model/2026.07",
+        "presented_at": "2026-06-30T10:00:00Z",
+        "status_issued_at": "2026-06-30T09:30:00Z",
+        "tsa_time": "2026-06-30T09:58:03Z"
+      },
+      "executed": true,
+      "family": "scenario",
+      "fixture": "fixtures/scenario/S05_mutate_during_audit.json",
+      "intended_code": "H01_HOLD_PENDING_REASSESSMENT",
+      "intended_layer": "none",
+      "threat_id": "T8"
+    }
+  ],
+  "mitigations": {
+    "M1": "binding check",
+    "M10": "hold on high-risk actions while a reopened claim is pending",
+    "M2": "profile verification: mandatory fields, signatures, digests",
+    "M3": "accepted-root policy, fail-closed on conflict",
+    "M4": "broker registration and injective alias mapping",
+    "M5": "named status source with maximum age",
+    "M6": "delegation validity, action scope, co-approval",
+    "M7": "timestamp root, clock skew, binding age, freshness window",
+    "M8": "carrier acceptance, fail closed",
+    "M9": "verifier-profile pin and runtime-profile allow-list"
+  },
+  "profile": "ecr-fixture-index/0.3",
+  "threats": {
+    "T0": "none: positive control (all four predicates hold)",
+    "T1": "tamper with or replay evidence (broker metadata, payload digests, old carrier bindings)",
+    "T2": "present untrusted or aliased roots (valid signature under an unaccepted root; alias across roots)",
+    "T3": "exploit broker opacity (broker-only attestation; normalisation that alters bound fields)",
+    "T4": "supply stale authority (expired, revoked or suspended delegation; stale or wrong status source)",
+    "T5": "escalate the action class (evidence scoped to read or enrich presented for a mutating action; missing co-approval)",
+    "T6": "carrier failure or unavailability (rejected exchange, status-check or timestamp outage, no record)",
+    "T7": "profile and clock drift (wrong or missing verifier profile; issuer/TSA clock disagreement)",
+    "T8": "runtime-profile drift (model, tool or prompt changed outside the relying party's control; a high-risk action presented while a reopened claim is pending)"
+  }
+}

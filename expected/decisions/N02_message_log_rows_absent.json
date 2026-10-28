@@ -1,0 +1,125 @@
+{
+  "accepted": false,
+  "action_class": "enrich",
+  "appraised_at": "2026-05-27T11:16:19Z",
+  "case_id": "N02_message_log_rows_absent",
+  "checks": {
+    "binding": [
+      {
+        "check": "B01_NO_CARRIER_RECORD",
+        "detail": "",
+        "result": "fail"
+      }
+    ],
+    "carrier": [
+      {
+        "check": "K01_CARRIER_RECORD_MISSING",
+        "detail": "carrier record present",
+        "result": "pass"
+      },
+      {
+        "check": "K02_CARRIER_REJECTED",
+        "detail": "carrier status accepted",
+        "result": "pass"
+      },
+      {
+        "check": "K03_CARRIER_CONFIG_MISMATCH",
+        "detail": "DEV DEV/COM/4321/TestClient -> DEV/COM/1234/TestService/mock1",
+        "result": "pass"
+      },
+      {
+        "check": "K04_MESSAGE_LOG_MISSING",
+        "detail": "",
+        "result": "fail"
+      },
+      {
+        "check": "K05_CARRIER_VALIDATION_UNAVAILABLE",
+        "detail": "validation and timestamping chains available",
+        "result": "pass"
+      }
+    ],
+    "evidence": [
+      {
+        "check": "V01_EVIDENCE_MISSING",
+        "detail": "evidence object present",
+        "result": "pass"
+      },
+      {
+        "check": "V02_PROFILE_UNKNOWN",
+        "detail": "ecr-receipt/0.2",
+        "result": "pass"
+      },
+      {
+        "check": "V03_REQUIRED_FIELD_MISSING",
+        "detail": "all mandatory fields present",
+        "result": "pass"
+      },
+      {
+        "check": "V04_SIGNATURE_INVALID",
+        "detail": "issuer signature verifies; key_id matches issuer.key_id",
+        "result": "pass"
+      },
+      {
+        "check": "V05_ENDORSEMENT_INVALID",
+        "detail": "1 endorsement(s) verify",
+        "result": "pass"
+      },
+      {
+        "check": "V06_BROKER_SIGNATURE_INVALID",
+        "detail": "direct receipt",
+        "result": "skip"
+      },
+      {
+        "check": "V07_BROKER_DIGEST_MISMATCH",
+        "detail": "direct receipt",
+        "result": "skip"
+      },
+      {
+        "check": "V08_TIMESTAMP_TOKEN_INVALID",
+        "detail": "tsa:municipal-tsa at 2026-05-27T11:14:22Z over receipt payload digest",
+        "result": "pass"
+      },
+      {
+        "check": "V09_STATUS_LIST_INVALID",
+        "detail": "status:municipal-delegation-registry issued 2026-05-27T11:00:00Z",
+        "result": "pass"
+      },
+      {
+        "check": "V10_CO_APPROVAL_INVALID",
+        "detail": "no co-approval (policy decides)",
+        "result": "skip"
+      }
+    ],
+    "policy": [
+      {
+        "check": "R00_UPSTREAM_PREDICATE_FAILED",
+        "detail": "",
+        "result": "fail"
+      }
+    ]
+  },
+  "depends_on": {
+    "carrier_config": "sha256:552515653da93e3a6a7e4f278fde4d9bc63ff8a78c99da3fe0ab9b41e7a7c7b3",
+    "policy_parameters": "sha256:09b261d292d5b9391441bbb2f5494ea27f979db97d3864cab51e9549c16fc537",
+    "runtime_profile": "sha256:037b82a0aac2c86c6df000c6813bda918d8c458be47c3ca32e39053a76fd9925",
+    "status": "sha256:98f0c946f5294794460a5916dece24d7763ea3e6e3c124b90688db32371ad2c5",
+    "trust_anchors": "sha256:bda33f8c1aba5ad0406af4c3259194c6ec131a74042a32ef91c1ff51bd634394"
+  },
+  "first_failure_layer": "carrier",
+  "fixture": "fixtures/coverage-controls/N02_message_log_rows_absent.json",
+  "fixture_sha256": "a733f7c2ff8d5521d9ec5d029338f8d471189deaf25ec7f259c0557bd0639e3c",
+  "hold_reason": null,
+  "policy_id": "rp-policy:municipal-soc/0.2",
+  "predicates": {
+    "binding_ok": false,
+    "carrier_ok": false,
+    "evidence_ok": true,
+    "policy_ok": false
+  },
+  "presented_at": "2026-05-27T11:16:19Z",
+  "reason": "the carrier record carries no message-log reference for both sides of the exchange",
+  "reason_code": "K04_MESSAGE_LOG_MISSING",
+  "receipt_id": "urn:uuid:8548f999-4de2-5468-b1f4-75616e88ef4d",
+  "verdict": "rejected",
+  "verifier_profile": "ecr-verifier/0.2"
+}

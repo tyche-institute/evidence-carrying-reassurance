@@ -1,0 +1,281 @@
+{
+  "ablation": {
+    "F1_verifier_profile": {
+      "accepted_if_family_removed": 2,
+      "packets_failing_a_rule_of_the_family": 2
+    },
+    "F2_roots_and_brokers": {
+      "accepted_if_family_removed": 9,
+      "packets_failing_a_rule_of_the_family": 9
+    },
+    "F3_status_and_delegation": {
+      "accepted_if_family_removed": 7,
+      "packets_failing_a_rule_of_the_family": 7
+    },
+    "F4_scope_and_co_approval": {
+      "accepted_if_family_removed": 3,
+      "packets_failing_a_rule_of_the_family": 3
+    },
+    "F5_time": {
+      "accepted_if_family_removed": 7,
+      "packets_failing_a_rule_of_the_family": 7
+    },
+    "F6_runtime_profile": {
+      "accepted_if_family_removed": 0,
+      "packets_failing_a_rule_of_the_family": 0
+    },
+    "any_single_family": {
+      "accepted_if_family_removed": 28,
+      "packets_failing_a_rule_of_the_family": 28
+    },
+    "policy_rejected_packets": 28
+  },
+  "baselines_P": {
+    "A0_carrier_log_only": {
+      "accepted": 22,
+      "let_through": 19
+    },
+    "A1_receipt_verification_only": {
+      "accepted": 22,
+      "let_through": 19
+    },
+    "A2_carrier_and_verification": {
+      "accepted": 20,
+      "let_through": 17
+    },
+    "A3_carrier_binding_verification": {
+      "accepted": 18,
+      "let_through": 15
+    },
+    "A4_four_predicate_chain": {
+      "accepted": 3,
+      "let_through": 0
+    }
+  },
+  "baselines_all": {
+    "A0_carrier_log_only": {
+      "accepted": 46,
+      "let_through": 39
+    },
+    "A1_receipt_verification_only": {
+      "accepted": 47,
+      "let_through": 40
+    },
+    "A2_carrier_and_verification": {
+      "accepted": 42,
+      "let_through": 35
+    },
+    "A3_carrier_binding_verification": {
+      "accepted": 35,
+      "let_through": 28
+    },
+    "A4_four_predicate_chain": {
+      "accepted": 7,
+      "let_through": 0
+    }
+  },
+  "brokered_fixtures": {
+    "binding": 2,
+    "carrier": 0,
+    "evidence": 0,
+    "none": 2,
+    "policy": 8,
+    "total": 12
+  },
+  "carrier_matrix": {
+    "executed": 15,
+    "planned": 3,
+    "rows": 18
+  },
+  "carrier_source_sha256": "2a37ffb62cbc17a38997814ba9c06054abc157c62cdcfe409e23183993e45ba3",
+  "coverage_controls": {
+    "binding": 1,
+    "carrier": 2,
+    "codes": [
+      "B04_REQUEST_DIGEST_MISMATCH",
+      "K03_CARRIER_CONFIG_MISMATCH",
+      "K04_MESSAGE_LOG_MISSING",
+      "R05_ROOT_NOT_ACCEPTED_FOR_ACTION",
+      "R07_BROKER_NOT_ACCEPTED",
+      "V02_PROFILE_UNKNOWN",
+      "V04_SIGNATURE_INVALID",
+      "V05_ENDORSEMENT_INVALID",
+      "V06_BROKER_SIGNATURE_INVALID",
+      "V08_TIMESTAMP_TOKEN_INVALID",
+      "V09_STATUS_LIST_INVALID",
+      "V10_CO_APPROVAL_INVALID"
+    ],
+    "evidence": 7,
+    "none": 0,
+    "policy": 2,
+    "total": 12
+  },
+  "packets": {
+    "coverage_controls": 12,
+    "planned_rows": 3,
+    "scenario": 5,
+    "tables": 51,
+    "total": 68
+  },
+  "policy_cases": {
+    "binding": 2,
+    "carrier": 2,
+    "evidence": 2,
+    "none": 3,
+    "policy": 15,
+    "policy_only_ids": [
+      "P03_valid_signature_untrusted_issuer",
+      "P04_stale_delegation",
+      "P05_revoked_delegation",
+      "P06_suspended_delegation",
+      "P07_wrong_action_class",
+      "P09_conflicting_roots",
+      "P10_stale_status_source",
+      "P13_replay_outside_window",
+      "P15_clock_skew_outside_window",
+      "P16_timestamp_root_mismatch",
+      "P18_broker_cross_root_alias",
+      "P21_missing_verifier_profile",
+      "P22_wrong_status_source",
+      "P23_broker_only_attestation",
+      "P24_dual_control_required"
+    ],
+    "total": 24
+  },
+  "policy_digest": "sha256:fb3731056497c2cec4b7dc4c688f2b9c12eeeca03de9eaff617da155a63bb908",
+  "policy_id": "rp-policy:municipal-soc/0.2",
+  "reason_codes": {
+    "as_first_failure": 41,
+    "exercised": 44,
+    "in_check_log_only": [
+      "B01_NO_CARRIER_RECORD",
+      "R00_UPSTREAM_PREDICATE_FAILED",
+      "V01_EVIDENCE_MISSING"
+    ],
+    "never_failing": [],
+    "total": 44
+  },
+  "reason_codes_exercised": [
+    "B02_NO_EVIDENCE",
+    "B03_MESSAGE_ID_MISMATCH",
+    "B04_REQUEST_DIGEST_MISMATCH",
+    "B05_RESPONSE_DIGEST_MISMATCH",
+    "B06_BROKER_BINDING_ALTERED",
+    "H01_HOLD_PENDING_REASSESSMENT",
+    "K01_CARRIER_RECORD_MISSING",
+    "K02_CARRIER_REJECTED",
+    "K03_CARRIER_CONFIG_MISMATCH",
+    "K04_MESSAGE_LOG_MISSING",
+    "K05_CARRIER_VALIDATION_UNAVAILABLE",
+    "R01_VERIFIER_PROFILE_MISSING",
+    "R02_VERIFIER_PROFILE_MISMATCH",
+    "R03_ISSUER_ROOT_ABSENT",
+    "R04_ROOT_NOT_ACCEPTED",
+    "R05_ROOT_NOT_ACCEPTED_FOR_ACTION",
+    "R06_ROOT_CONFLICT",
+    "R07_BROKER_NOT_ACCEPTED",
+    "R08_BROKER_ALIAS_NOT_INJECTIVE",
+    "R09_STATUS_SOURCE_MISSING",
+    "R10_STATUS_SOURCE_NOT_ACCEPTED",
+    "R11_STATUS_STALE",
+    "R12_DELEGATION_REVOKED",
+    "R13_DELEGATION_SUSPENDED",
+    "R14_DELEGATION_NOT_VALID_AT_EVENT",
+    "R15_ACTION_OUTSIDE_SCOPE",
+    "R16_CO_APPROVAL_REQUIRED",
+    "R17_TIMESTAMP_ROOT_NOT_ACCEPTED",
+    "R18_CLOCK_SKEW_EXCEEDED",
+    "R19_BINDING_AGE_EXCEEDED",
+    "R20_TIMESTAMP_OUTSIDE_WINDOW",
+    "R21_RUNTIME_PROFILE_NOT_ALLOWED",
+    "V02_PROFILE_UNKNOWN",
+    "V03_REQUIRED_FIELD_MISSING",
+    "V04_SIGNATURE_INVALID",
+    "V05_ENDORSEMENT_INVALID",
+    "V06_BROKER_SIGNATURE_INVALID",
+    "V07_BROKER_DIGEST_MISMATCH",
+    "V08_TIMESTAMP_TOKEN_INVALID",
+    "V09_STATUS_LIST_INVALID",
+    "V10_CO_APPROVAL_INVALID"
+  ],
+  "reassurance": {
+    "attachments": 5,
+    "decisions_first_run": 3,
+    "events": 9,
+    "holds": 2,
+    "input_changes": 10,
+    "missed": 0,
+    "new_actions": 5,
+    "outcome_changed": 4,
+    "outcomes": {
+      "frozen": 1,
+      "reaffirmed": 3,
+      "revoked": 4
+    },
+    "re_appraisals_selected": 7,
+    "released": [
+      {
+        "case_id": "S01_mutate_with_co_approval",
+        "reason_code": null,
+        "receipt_id": "urn:uuid:39a06b11-f434-5570-9872-50e7709d6497",
+        "verdict": "accepted"
+      },
+      {
+        "case_id": "S05_mutate_during_audit",
+        "reason_code": null,
+        "receipt_id": "urn:uuid:bdcc75b0-a3b2-509f-bf2b-facb02009609",
+        "verdict": "accepted"
+      }
+    ],
+    "replayed": [
+      {
+        "case_id": "P01_direct_trusted_issuer",
+        "outcome": "reaffirmed",
+        "replay_matches_recorded": true
+      }
+    ],
+    "standing_total": 34,
+    "strategies": {
+      "digest_selected": {
+        "re_appraisals": 7,
+        "revocations_caught": 4,
+        "revocations_missed": 0
+      },
+      "reappraise_all": {
+        "re_appraisals": 34,
+        "revocations_caught": 4,
+        "revocations_missed": 0
+      },
+      "static_verdict": {
+        "re_appraisals": 0,
+        "revocations_caught": 0,
+        "revocations_missed": 4
+      },
+      "whole_input_digest": {
+        "re_appraisals": 34,
+        "revocations_caught": 4,
+        "revocations_missed": 0
+      }
+    },
+    "window": {
+      "from": "2026-06-03T09:00:00Z",
+      "to": "2026-07-08T15:00:00Z"
+    }
+  },
+  "sensitivity": {
+    "decisions_per_seed": 63,
+    "events_per_seed": 40,
+    "missed": 0,
+    "outcome_changed": 700,
+    "outcome_changed_max": 7,
+    "outcome_changed_min": 7,
+    "seeds": 100,
+    "selected": 1250,
+    "selected_share_max": 1.0,
+    "selected_share_median": 0.5,
+    "selected_share_min": 0.167,
+    "standing_total": 2709,
+    "whole_input_selected": 2709
+  },
+  "verifier_version": "0.3.1"
+}
