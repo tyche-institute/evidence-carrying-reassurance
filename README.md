@@ -2,7 +2,7 @@
 
 Companion artifact to the article *Evidence-Carrying Re-Assurance for
 Agentic Incident Response* (Anton Sokolov, Tyche Institute, Tallinn).
-Version 0.3.1.
+Version 0.3.1, archived at Zenodo: https://doi.org/10.5281/zenodo.23742865.
 
 The article asks when a relying party should accept an action that an
 autonomous agent took on its behalf through a governed data-exchange
