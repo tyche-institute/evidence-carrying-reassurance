@@ -164,6 +164,27 @@ class Soundness(unittest.TestCase):
         for r in rows:
             self.assertEqual(r["missed"], "0", f"seed {r['seed']}")
             self.assertLessEqual(int(r["selected"]), int(r["standing_total"]))
+            self.assertEqual(r["entries_only_missed"], "0", f"seed {r['seed']}")
+            self.assertEqual(r["keyed_fallback_missed"], "0", f"seed {r['seed']}")
+
+    def test_single_changes_compare_the_strategies(self):
+        """Every change applied to the initial state: digest selection misses
+        nothing and never selects more than the entries-only digest; the keyed
+        index alone misses only where the change names no identifier."""
+        with (ROOT / "expected" / "reassurance" / "single-changes.csv").open(encoding="utf-8") as fh:
+            rows = {r["category"]: r for r in csv.DictReader(fh)}
+        self.assertEqual(int(rows["total"]["changes"]), 4000)
+        for cat, r in rows.items():
+            n = {k: int(v) for k, v in r.items() if k != "category"}
+            self.assertEqual(n["digest_missed"], 0, cat)
+            self.assertEqual(n["keyed_fallback_missed"], 0, cat)
+            self.assertEqual(n["entries_only_missed"], 0, cat)
+            self.assertEqual(n["whole_input_selected"], n["standing_pairs"], cat)
+            self.assertLessEqual(n["digest_selected"], n["entries_only_selected"], cat)
+            self.assertLessEqual(n["outcome_changed"], n["digest_selected"], cat)
+            if cat not in ("thresholds", "status_pin_verifier_profile", "total"):
+                self.assertEqual(n["keyed_index_missed"], 0, cat)
+        self.assertGreater(int(rows["thresholds"]["keyed_index_missed"]), 0)
 
 
 if __name__ == "__main__":

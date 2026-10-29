@@ -1,0 +1,12 @@
+category,changes,standing_pairs,outcome_changed,digest_selected,digest_missed,keyed_index_selected,keyed_index_missed,keyed_fallback_selected,keyed_fallback_missed,keyed_fallback_disagree,entries_only_selected,entries_only_missed,whole_input_selected,whole_input_missed
+accepted_roots,391,2737,560,910,0,910,0,910,0,0,2709,0,2737,0
+status_entry,375,2625,286,286,0,286,0,286,0,0,2100,0,2625,0
+runtime_allow_list,381,2667,1449,1449,0,1449,0,1449,0,0,2667,0,2667,0
+carrier_config,400,2800,910,1890,0,910,0,1890,0,0,2800,0,2800,0
+thresholds,442,3094,1227,3073,0,0,1227,3073,0,0,3073,0,3094,0
+action_class_rules,400,2800,427,630,0,630,0,630,0,0,2212,0,2800,0
+approvers,398,2786,0,0,0,0,0,0,0,0,2786,0,2786,0
+broker_registration,438,3066,476,680,0,680,0,680,0,0,2380,0,3066,0
+timestamp_roots,392,2744,966,2646,0,2646,0,2646,0,0,2744,0,2744,0
+status_pin_verifier_profile,383,2681,1092,1092,0,511,581,1092,0,0,1092,0,2681,0
+total,4000,28000,7393,12656,0,8022,1808,12656,0,0,24563,0,28000,0

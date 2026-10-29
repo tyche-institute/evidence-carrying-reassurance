@@ -10,6 +10,32 @@
       "G4": "accepted",
       "G5": "accepted"
     },
+    "comparison": {
+      "entries_only": {
+        "caught": 0,
+        "disagree": 3,
+        "missed": 0,
+        "selected": 3
+      },
+      "keyed_fallback": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_index": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "whole_input": {
+        "caught": 0,
+        "disagree": 3,
+        "missed": 0,
+        "selected": 3
+      }
+    },
     "event_seq": 1,
     "frozen_decisions": [],
     "held_actions": [],
@@ -45,6 +71,32 @@
       "G3": "accepted",
       "G4": "accepted",
       "G5": "accepted"
+    },
+    "comparison": {
+      "entries_only": {
+        "caught": 1,
+        "disagree": 2,
+        "missed": 0,
+        "selected": 3
+      },
+      "keyed_fallback": {
+        "caught": 1,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 1
+      },
+      "keyed_index": {
+        "caught": 1,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 1
+      },
+      "whole_input": {
+        "caught": 1,
+        "disagree": 2,
+        "missed": 0,
+        "selected": 3
+      }
     },
     "event_seq": 2,
     "frozen_decisions": [],
@@ -88,6 +140,32 @@
       "G4": "accepted",
       "G5": "pending"
     },
+    "comparison": {
+      "entries_only": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_fallback": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_index": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "whole_input": {
+        "caught": 0,
+        "disagree": 2,
+        "missed": 0,
+        "selected": 2
+      }
+    },
     "event_seq": 3,
     "frozen_decisions": [],
     "held_actions": [],
@@ -126,6 +204,7 @@
       "G4": "accepted",
       "G5": "accepted"
     },
+    "comparison": null,
     "event_seq": 4,
     "evidence": {
       "reassessment_record": "re-assessment of the enrichment workflow under the new model"
@@ -161,6 +240,32 @@
       "G3": "accepted",
       "G4": "accepted",
       "G5": "accepted"
+    },
+    "comparison": {
+      "entries_only": {
+        "caught": 0,
+        "disagree": 2,
+        "missed": 0,
+        "selected": 2
+      },
+      "keyed_fallback": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_index": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "whole_input": {
+        "caught": 0,
+        "disagree": 2,
+        "missed": 0,
+        "selected": 2
+      }
     },
     "event_seq": 5,
     "evidence": {
@@ -205,6 +310,32 @@
       "G4": "accepted",
       "G5": "accepted"
     },
+    "comparison": {
+      "entries_only": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_fallback": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_index": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "whole_input": {
+        "caught": 0,
+        "disagree": 4,
+        "missed": 0,
+        "selected": 4
+      }
+    },
     "event_seq": 6,
     "frozen_decisions": [],
     "held_actions": [],
@@ -241,6 +372,7 @@
       "G4": "accepted",
       "G5": "accepted"
     },
+    "comparison": null,
     "event_seq": 7,
     "evidence": {
       "policy_approval": "SOC lead approves scope read/enrich/mutate for the agent under del-006 with co-approval"
@@ -271,6 +403,32 @@
       "G3": "accepted",
       "G4": "accepted",
       "G5": "accepted"
+    },
+    "comparison": {
+      "entries_only": {
+        "caught": 0,
+        "disagree": 4,
+        "missed": 0,
+        "selected": 4
+      },
+      "keyed_fallback": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_index": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "whole_input": {
+        "caught": 0,
+        "disagree": 4,
+        "missed": 0,
+        "selected": 4
+      }
     },
     "event_seq": 8,
     "frozen_decisions": [],
@@ -305,6 +463,32 @@
       "G3": "accepted",
       "G4": "accepted",
       "G5": "accepted"
+    },
+    "comparison": {
+      "entries_only": {
+        "caught": 0,
+        "disagree": 4,
+        "missed": 0,
+        "selected": 4
+      },
+      "keyed_fallback": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_index": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "whole_input": {
+        "caught": 0,
+        "disagree": 4,
+        "missed": 0,
+        "selected": 4
+      }
     },
     "event_seq": 9,
     "frozen_decisions": [],
@@ -343,6 +527,32 @@
       "G3": "accepted",
       "G4": "accepted",
       "G5": "accepted"
+    },
+    "comparison": {
+      "entries_only": {
+        "caught": 0,
+        "disagree": 1,
+        "missed": 0,
+        "selected": 4
+      },
+      "keyed_fallback": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 3
+      },
+      "keyed_index": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 3
+      },
+      "whole_input": {
+        "caught": 0,
+        "disagree": 1,
+        "missed": 0,
+        "selected": 4
+      }
     },
     "event_seq": 10,
     "frozen_decisions": [],
@@ -406,6 +616,7 @@
       "G4": "pending",
       "G5": "pending"
     },
+    "comparison": null,
     "event_seq": 11,
     "frozen_decisions": [
       "urn:uuid:022aa262-0c7e-50b2-ae9b-9190ad3f0835"
@@ -451,6 +662,32 @@
       "G3": "accepted",
       "G4": "accepted",
       "G5": "accepted"
+    },
+    "comparison": {
+      "entries_only": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_fallback": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "keyed_index": {
+        "caught": 0,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 0
+      },
+      "whole_input": {
+        "caught": 0,
+        "disagree": 3,
+        "missed": 0,
+        "selected": 3
+      }
     },
     "event_seq": 12,
     "evidence": {
@@ -505,6 +742,32 @@
       "G3": "accepted",
       "G4": "accepted",
       "G5": "pending"
+    },
+    "comparison": {
+      "entries_only": {
+        "caught": 3,
+        "disagree": 2,
+        "missed": 0,
+        "selected": 5
+      },
+      "keyed_fallback": {
+        "caught": 3,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 3
+      },
+      "keyed_index": {
+        "caught": 3,
+        "disagree": 0,
+        "missed": 0,
+        "selected": 3
+      },
+      "whole_input": {
+        "caught": 3,
+        "disagree": 2,
+        "missed": 0,
+        "selected": 5
+      }
     },
     "event_seq": 13,
     "frozen_decisions": [],
@@ -573,6 +836,7 @@
       "G4": "accepted",
       "G5": "accepted"
     },
+    "comparison": null,
     "event_seq": 14,
     "evidence": {
       "defect_report": "DR-2026-031 filed against ir-enrichment-model/2026.05",

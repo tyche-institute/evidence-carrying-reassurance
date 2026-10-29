@@ -1,5 +1,8 @@
 strategy,description,input_changes,re_appraisals,revocations_caught,revocations_missed
 static_verdict,never re-appraise a recorded decision,10,0,0,4
 reappraise_all,re-appraise every standing decision at every input change,10,34,4,0
-whole_input_digest,re-appraise the decisions whose digest over a whole changed input differs (no slices),10,34,4,0
-digest_selected,re-appraise the decisions whose input-slice digests changed (this article),10,7,4,0
+whole_input_digest,"re-appraise all when the digest of a whole input (policy, or status list as received) changed",10,34,4,0
+entries_only_digest,"as above, with the status list digested without its issue time",10,25,4,0
+keyed_index,re-appraise the decisions filed under an identifier the change names,10,7,4,0
+keyed_index_fallback,"as above, and re-appraise all when the change names no identifier",10,7,4,0
+digest_selected,re-appraise the decisions whose input-slice digests changed,10,7,4,0

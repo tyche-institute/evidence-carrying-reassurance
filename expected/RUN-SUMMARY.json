@@ -241,6 +241,21 @@
         "revocations_caught": 4,
         "revocations_missed": 0
       },
+      "entries_only_digest": {
+        "re_appraisals": 25,
+        "revocations_caught": 4,
+        "revocations_missed": 0
+      },
+      "keyed_index": {
+        "re_appraisals": 7,
+        "revocations_caught": 4,
+        "revocations_missed": 0
+      },
+      "keyed_index_fallback": {
+        "re_appraisals": 7,
+        "revocations_caught": 4,
+        "revocations_missed": 0
+      },
       "reappraise_all": {
         "re_appraisals": 34,
         "revocations_caught": 4,
@@ -264,7 +279,13 @@
   },
   "sensitivity": {
     "decisions_per_seed": 63,
+    "entries_only_missed": 0,
+    "entries_only_selected": 2393,
     "events_per_seed": 40,
+    "keyed_fallback_missed": 0,
+    "keyed_fallback_selected": 1250,
+    "keyed_index_missed": 118,
+    "keyed_index_selected": 893,
     "missed": 0,
     "outcome_changed": 700,
     "outcome_changed_max": 7,
@@ -277,5 +298,22 @@
     "standing_total": 2709,
     "whole_input_selected": 2709
   },
-  "verifier_version": "0.3.1"
+  "single_changes": {
+    "category": "total",
+    "changes": 4000,
+    "digest_missed": 0,
+    "digest_selected": 12656,
+    "entries_only_missed": 0,
+    "entries_only_selected": 24563,
+    "keyed_fallback_disagree": 0,
+    "keyed_fallback_missed": 0,
+    "keyed_fallback_selected": 12656,
+    "keyed_index_missed": 1808,
+    "keyed_index_selected": 8022,
+    "outcome_changed": 7393,
+    "standing_pairs": 28000,
+    "whole_input_missed": 0,
+    "whole_input_selected": 28000
+  },
+  "verifier_version": "0.3.2"
 }

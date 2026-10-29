@@ -47,7 +47,7 @@ with the cases that exercise each one.
 | `expected/decisions/<case>.json` | the full decision record per table or coverage packet (check log and `depends_on` digests) |
 | `expected/reason-codes.csv` | the 44 codes: `cases` that reach the code as a first failure, `failing_in_decisions` (recorded decisions whose check log shows the code failing), `note` for the three codes that cannot be a first failure |
 | `expected/worked-examples/P01_…md`, `P07_…md` | the two worked examples in full |
-| `expected/reassurance/` | the scenario: `log.jsonl` (append-only decision log), `records.json` (one record per event or attachment), `summary.csv`, `strategies.csv` (static / re-appraise-all / digest-selected), `decisions/S01…S05.json` (first decision of each scenario packet), `replay-bundle-P01.json` |
+| `expected/reassurance/` | the scenario: `log.jsonl` (append-only decision log), `records.json` (one record per event or attachment), `summary.csv`, `strategies.csv` (seven strategies, see below), `sensitivity.csv`, `single-changes.csv`, `decisions/S01…S05.json` (first decision of each scenario packet), `replay-bundle-P01.json` |
 | `expected/RUN-SUMMARY.json` | the headline numbers the article quotes |
 | `SHA256SUMS` | over `carrier/`, `fixtures/`, `policy/`, `expected/`, `spec/`, `verifier/`, `tests/` |
 
@@ -59,6 +59,21 @@ accepted_if_family_removed, accepted_if_family_removed_ids) and
 columns: seed, events, input_changes, standing_total, selected,
 whole_input_selected, outcome_changed, missed, selected_share).
 `strategies.csv` has a fourth row, `whole_input_digest`.
+
+Added in 0.3.2: `strategies.csv` has seven rows (`static_verdict`,
+`reappraise_all`, `whole_input_digest`, `entries_only_digest`,
+`keyed_index`, `keyed_index_fallback`, `digest_selected`); every row except
+the first two is measured on the standing decisions at each input change.
+`sensitivity.csv` gains `entries_only_selected`, `entries_only_missed`,
+`keyed_index_selected`, `keyed_index_missed`, `keyed_fallback_selected`,
+`keyed_fallback_missed`. `expected/reassurance/single-changes.csv` has one
+row per change category and a `total` row; columns: category, changes,
+standing_pairs (decision-change pairs), outcome_changed, then `_selected`
+and `_missed` for digest selection (`digest_`), the keyed index, the keyed
+index with fallback, the entries-only digest and the whole-input digest, and
+`keyed_fallback_disagree` (pairs that exactly one of digest selection and
+the keyed index with fallback selects). `traceability.csv` includes the
+scenario packets (family `scenario`).
 
 ## 3. Columns
 

@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this artifact, cite the article and this repository."
 title: "Evidence-carrying re-assurance: reference verifier and evaluation artifact"
-version: 0.3.1
-doi: 10.5281/zenodo.23742865
-date-released: 2026-10-28
+version: 0.3.2
+doi: 10.5281/zenodo.23754808
+date-released: 2026-10-29
 license: MIT
 repository-code: "https://github.com/tyche-institute/evidence-carrying-reassurance"
 authors:

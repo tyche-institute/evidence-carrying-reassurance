@@ -12,7 +12,7 @@ fixed, identifiers are UUIDv5 of the case id. Running the generator twice
 yields byte-identical fixtures.
 """
 
-__version__ = "0.3.1"
+__version__ = "0.3.2"
 PROFILE_RECEIPT = "ecr-receipt/0.2"
 PROFILE_ENDORSEMENT = "ecr-key-endorsement/0.2"
 PROFILE_TIMESTAMP = "ecr-timestamp/0.2"

@@ -2,7 +2,8 @@
 
 Companion artifact to the article *Evidence-Carrying Re-Assurance for
 Agentic Incident Response* (Anton Sokolov, Tyche Institute, Tallinn).
-Version 0.3.1, archived at Zenodo: https://doi.org/10.5281/zenodo.23742865.
+Version 0.3.2, archived at Zenodo: https://doi.org/10.5281/zenodo.23754808
+(all versions: https://doi.org/10.5281/zenodo.23742864).
 
 The article asks when a relying party should accept an action that an
 autonomous agent took on its behalf through a governed data-exchange
@@ -63,7 +64,7 @@ clock, no secrets. Reference run: Python 3.12.3, cryptography 49.0.0,
 Ubuntu 24.04.4 LTS.
 
     make all      # regenerate fixtures, run the verifier, write expected/ and SHA256SUMS
-    make check    # verify SHA256SUMS against the tree, then run the 25 tests
+    make check    # verify SHA256SUMS against the tree, then run the 26 tests
 
 `make check` on an untouched checkout passes: the generated tree is
 byte-identical on every run because keys derive from fixed labels, ids are
@@ -186,6 +187,23 @@ and misses (always 0). P07 now carries a listed co-approval, so that its
 only failing rule is the scope rule R15 (0.3.0's P07 also failed R16). The
 observed carrier record is unchanged, including the message id the exchange
 carried.
+
+Version 0.3.2 (revision round 3) measures every comparison strategy instead
+of deriving it. At each input change the log now also records, for the same
+standing decisions, which ones four further rules would re-appraise and
+which outcome changes each would catch or miss: a digest over each whole
+input (the status list as received), the same with the status list
+digested without its issue time, a keyed invalidation index in the style
+of CAEP or token introspection (a decision is filed under the identifiers
+it rests on, and a change names the identifiers it touches), and that index
+with re-appraise-all when a change names no identifier. `strategies.csv`
+has seven rows. The cumulative sequences of `sensitivity.csv` drain the
+standing set (a revoked decision never stands again), so
+`expected/reassurance/single-changes.csv` adds a run in which each of
+4,000 random changes is applied to the initial state and meets all 7
+accepted decisions; rows are per change category. The scenario packets
+S01–S05 now appear in `traceability.csv` with their first decision in the
+scenario log. No fixture, policy or decision changed.
 
 ## Licence and citation
 

@@ -16,13 +16,15 @@ Outputs
                                    number of recorded decisions whose check log shows it failing
   decisions/<case>.json            full decision record per table or coverage packet
   worked-examples/<case>.md        packet + decision + check log, P01 and P07
-  reassurance/{log.jsonl,records.json,summary.csv,strategies.csv,decisions/S*.json,replay-bundle-P01.json}
+  reassurance/{log.jsonl,records.json,summary.csv,strategies.csv,sensitivity.csv,single-changes.csv,
+               decisions/S*.json,replay-bundle-P01.json}
   RUN-SUMMARY.json                 headline numbers quoted in the article
 """
 
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import json
 import sys
@@ -103,16 +105,62 @@ def run_sensitivity(policy: dict, table_packets: list[dict], seeds: int = SENSIT
             log.decide(pkt)
         registry = json.loads(json.dumps(catalogue.STATUS_ENTRIES))
         at = datetime(2026, 6, 1, 9, 0, tzinfo=timezone.utc)
-        tot = {"standing": 0, "selected": 0, "whole": 0, "changed": 0, "missed": 0, "inputs": 0}
+        tot = {"standing": 0, "selected": 0, "whole": 0, "changed": 0, "missed": 0, "inputs": 0,
+               "entries": 0, "entries_missed": 0, "keyed": 0, "keyed_missed": 0, "fallback": 0, "fallback_missed": 0}
         for i in range(n_events):
             at += timedelta(days=1)
             kind, change = randomseq.random_change(rng, log.policy, registry, at)
             rec = log.event(kind, randomseq.iso(at), change, f"seed {seed} event {i}")
+            c = rec["comparison"]
             tot["standing"] += rec["standing"]; tot["selected"] += rec["selected"]; tot["whole"] += rec["selected_whole_input"]
             tot["changed"] += rec["outcome_changed"]; tot["missed"] += len(rec["missed"]); tot["inputs"] += 1 if rec["inputs_changed"] else 0
+            tot["entries"] += c["entries_only"]["selected"]; tot["entries_missed"] += c["entries_only"]["missed"]
+            tot["keyed"] += c["keyed_index"]["selected"]; tot["keyed_missed"] += c["keyed_index"]["missed"]
+            tot["fallback"] += c["keyed_fallback"]["selected"]; tot["fallback_missed"] += c["keyed_fallback"]["missed"]
         rows.append({"seed": seed, "events": n_events, "input_changes": tot["inputs"], "standing_total": tot["standing"], "selected": tot["selected"],
-                     "whole_input_selected": tot["whole"], "outcome_changed": tot["changed"], "missed": tot["missed"],
+                     "whole_input_selected": tot["whole"], "entries_only_selected": tot["entries"], "entries_only_missed": tot["entries_missed"],
+                     "keyed_index_selected": tot["keyed"], "keyed_index_missed": tot["keyed_missed"],
+                     "keyed_fallback_selected": tot["fallback"], "keyed_fallback_missed": tot["fallback_missed"],
+                     "outcome_changed": tot["changed"], "missed": tot["missed"],
                      "selected_share": f"{tot['selected'] / tot['standing']:.3f}" if tot["standing"] else ""})
+    return rows
+
+
+def run_single_changes(policy: dict, table_packets: list[dict], seeds: int = SENSITIVITY_SEEDS, n_events: int = SENSITIVITY_EVENTS) -> list[dict]:
+    """The cumulative sequences above drain: a revoked decision never stands
+    again. Here every change is drawn from, and applied to, the initial
+    state, so each of the `seeds` x `n_events` changes meets every accepted
+    decision. Rows are per change category: how many decision-change pairs
+    each strategy re-appraises, how many outcome changes it catches, and how
+    many it misses. `keyed_fallback_disagree` counts the decision-change
+    pairs that exactly one of digest selection and the keyed index with
+    fallback selects."""
+    base = ReassuranceLog(policy)
+    for pkt in table_packets:
+        base.decide(pkt)
+    cats: dict[str, dict] = {c: {"category": c, "changes": 0, "standing_pairs": 0, "outcome_changed": 0,
+                                 "digest_selected": 0, "digest_missed": 0, "keyed_index_selected": 0, "keyed_index_missed": 0,
+                                 "keyed_fallback_selected": 0, "keyed_fallback_missed": 0, "keyed_fallback_disagree": 0,
+                                 "entries_only_selected": 0, "entries_only_missed": 0, "whole_input_selected": 0, "whole_input_missed": 0}
+                             for c in randomseq.CATEGORIES}
+    for seed in range(seeds):
+        rng = random.Random(10_000 + seed)
+        at = datetime(2026, 6, 1, 9, 0, tzinfo=timezone.utc)
+        for i in range(n_events):
+            at += timedelta(days=1)
+            log = copy.deepcopy(base)
+            registry = json.loads(json.dumps(catalogue.STATUS_ENTRIES))
+            info: dict = {}
+            kind, change = randomseq.random_change(rng, log.policy, registry, at, info)
+            rec = log.event(kind, randomseq.iso(at), change, f"single seed {seed} change {i}")
+            r, c = cats[info["category"]], rec["comparison"]
+            r["changes"] += 1; r["standing_pairs"] += rec["standing"]; r["outcome_changed"] += rec["outcome_changed"]
+            r["digest_selected"] += rec["selected"]; r["digest_missed"] += len(rec["missed"])
+            r["keyed_fallback_disagree"] += c["keyed_fallback"]["disagree"]
+            for k in ("keyed_index", "keyed_fallback", "entries_only", "whole_input"):
+                r[f"{k}_selected"] += c[k]["selected"]; r[f"{k}_missed"] += c[k]["missed"]
+    rows = [cats[c] for c in randomseq.CATEGORIES]
+    rows.append({"category": "total", **{k: sum(r[k] for r in rows) for k in rows[0] if k != "category"}})
     return rows
 
 
@@ -357,6 +405,13 @@ def main() -> int:
                    "fixture": c["fixture"] or "(planned)", "first_failure_layer": d["first_failure_layer"] if d else "carrier (planned)",
                    "reason_code": code or "", "mitigation_id": mid, "mitigation": catalogue.MITIGATIONS[mid][0] if mid in catalogue.MITIGATIONS else "",
                    "claim_reopened": CLAIM_OF_LAYER.get(d["first_failure_layer"], "G1") if d else "G1"})
+    for cid, d in first_scenario.items():            # scenario packets: their first decision in the scenario log
+        c = cases[cid]
+        mid = catalogue.mitigation_for(d["reason_code"])
+        tr.append({"threat_id": c["threat_id"], "threat": catalogue.THREATS[c["threat_id"]], "case_id": cid, "family": c["family"],
+                   "fixture": c["fixture"], "first_failure_layer": d["first_failure_layer"], "reason_code": d["reason_code"] or "",
+                   "mitigation_id": mid, "mitigation": catalogue.MITIGATIONS[mid][0] if mid in catalogue.MITIGATIONS else "",
+                   "claim_reopened": CLAIM_OF_LAYER.get(d["first_failure_layer"], "G1")})
     tr.sort(key=lambda r: (r["threat_id"], r["case_id"]))
     write_csv(out / "traceability.csv", tr, ["threat_id", "threat", "case_id", "family", "fixture", "first_failure_layer", "reason_code", "mitigation_id", "mitigation", "claim_reopened"])
 
@@ -425,7 +480,11 @@ def main() -> int:
     # sensitivity: seeded random input-change sequences over every executed non-scenario packet
     sens_rows = run_sensitivity(policy, [packets[c["case_id"]] for c in index["cases"] if c["executed"] and c["family"] != "scenario"])
     write_csv(out / "reassurance" / "sensitivity.csv", sens_rows, ["seed", "events", "input_changes", "standing_total", "selected", "whole_input_selected",
+                                                                 "entries_only_selected", "entries_only_missed", "keyed_index_selected", "keyed_index_missed",
+                                                                 "keyed_fallback_selected", "keyed_fallback_missed",
                                                                  "outcome_changed", "missed", "selected_share"])
+    single_rows = run_single_changes(policy, [packets[c["case_id"]] for c in index["cases"] if c["executed"] and c["family"] != "scenario"])
+    write_csv(out / "reassurance" / "single-changes.csv", single_rows, list(single_rows[0].keys()))
 
     # headline numbers
     pcnt = Counter(decisions[i]["first_failure_layer"] for i in catalogue.POLICY_CASES)
@@ -477,7 +536,11 @@ def main() -> int:
             "selected_share_min": min(float(r["selected_share"]) for r in sens_rows), "selected_share_median": sorted(float(r["selected_share"]) for r in sens_rows)[len(sens_rows) // 2],
             "selected_share_max": max(float(r["selected_share"]) for r in sens_rows),
             "outcome_changed_min": min(r["outcome_changed"] for r in sens_rows), "outcome_changed_max": max(r["outcome_changed"] for r in sens_rows),
+            "entries_only_selected": sum(r["entries_only_selected"] for r in sens_rows), "entries_only_missed": sum(r["entries_only_missed"] for r in sens_rows),
+            "keyed_index_selected": sum(r["keyed_index_selected"] for r in sens_rows), "keyed_index_missed": sum(r["keyed_index_missed"] for r in sens_rows),
+            "keyed_fallback_selected": sum(r["keyed_fallback_selected"] for r in sens_rows), "keyed_fallback_missed": sum(r["keyed_fallback_missed"] for r in sens_rows),
         },
+        "single_changes": single_rows[-1],
         "carrier_source_sha256": file_sha256(root / "carrier" / "local-xroad-dev" / "message-binding.json"),
     }
     dump_json(out / "RUN-SUMMARY.json", headline)
@@ -486,6 +549,7 @@ def main() -> int:
     print("reason codes:", json.dumps(headline["reason_codes"]))
     print("ablation:", json.dumps(headline["ablation"]))
     print("sensitivity:", json.dumps(headline["sensitivity"]))
+    print("single changes:", json.dumps(headline["single_changes"]))
     print("re-assurance:", json.dumps(headline["reassurance"]["strategies"]), "outcomes", headline["reassurance"]["outcomes"], "holds", headline["reassurance"]["holds"])
     return 0
 

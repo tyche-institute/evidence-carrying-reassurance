@@ -34,11 +34,18 @@ def fresh(registry: dict, at: datetime) -> dict:
                        json.loads(json.dumps(registry)))
 
 
-def random_change(rng: random.Random, policy: dict, registry: dict, at: datetime) -> tuple[str, dict]:
-    """One input change drawn from every table the checks read."""
+CATEGORIES = ("accepted_roots", "status_entry", "runtime_allow_list", "carrier_config", "thresholds",
+              "action_class_rules", "approvers", "broker_registration", "timestamp_roots", "status_pin_verifier_profile")
+
+
+def random_change(rng: random.Random, policy: dict, registry: dict, at: datetime, info: dict | None = None) -> tuple[str, dict]:
+    """One input change drawn from every table the checks read. When `info`
+    is given, `info["category"]` names the table the change was drawn from."""
     p = copy.deepcopy(policy)
     kind = "trust_list_changed"
     k = rng.randrange(10)
+    if info is not None:
+        info["category"] = CATEGORIES[k]
     if k == 0:                                   # accepted roots: admit, withdraw or re-scope
         root = rng.choice(["root:municipal-agent-ca", "root:partner-ca", "root:vendor-demo-ca"])
         label = {"root:municipal-agent-ca": "root-municipal-agent-ca", "root:partner-ca": "root-partner-ca", "root:vendor-demo-ca": "root-vendor-demo-ca"}[root]
